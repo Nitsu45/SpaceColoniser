@@ -46,17 +46,32 @@ public class Colonymechanics : MonoBehaviour
                     break;
             }
         }
+
+        //the routine to update the resources
+        StartCoroutine(ResourceUpdate());
     }
 
     // Update is called once per frame
     void Update()
     {
-        planetStorage[0] = planetStorage[0] + oreProduction; 
-        planetStorage[1] = energyProduction;
-        planetStorage[2] = manpower;
-        OreProductionDisplay.text = $"Ore Production: {oreProduction}";
-        OreDisplay.text = $"Ore: {planetStorage[0]}";
-        EnergyProductionDisplay.text = $"Energy Production: {planetStorage[1]}";
-        ManPowerDisplay.text = $"Man Power:  {planetStorage[2]}";
+        
     }
+
+
+    IEnumerator ResourceUpdate()
+    {
+        while(true)
+        {
+            planetStorage[0] = planetStorage[0] + oreProduction;
+            planetStorage[1] = energyProduction;
+            planetStorage[2] = manpower;
+            OreProductionDisplay.text = $"Ore Production: {oreProduction}/m";
+            OreDisplay.text = $"Ore: {planetStorage[0]}";
+            EnergyProductionDisplay.text = $"Energy Production: {planetStorage[1]}";
+            ManPowerDisplay.text = $"Man Power:  {planetStorage[2]}";
+            yield return new WaitForSecondsRealtime(60f);
+        }
+    }
+
+
 }
