@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\User\\Space Colonisation 3D\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|c:\\users\\user\\space colonisation 3d\\assets\\colonymechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|c:\\users\\user\\documents\\github\\spacecoloniser\\space colonisation 3d\\assets\\colonymechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\colonymechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Colonymechanics.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Space Colonisation 3D\\Assets\\Colonymechanics.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Colonymechanics.cs",
               "RelativeDocumentMoniker": "Assets\\Colonymechanics.cs",
-              "ToolTip": "C:\\Users\\User\\Space Colonisation 3D\\Assets\\Colonymechanics.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Colonymechanics.cs",
               "RelativeToolTip": "Assets\\Colonymechanics.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwDUAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-13T17:17:56.78Z",
               "EditorCaption": ""
