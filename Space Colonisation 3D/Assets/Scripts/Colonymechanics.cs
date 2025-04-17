@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -24,7 +25,8 @@ public class Colonymechanics : MonoBehaviour
 
 
     //Prefabs
-    public GameObject mineBuilding;
+    public GameObject mine;
+    
 
     int[] planetStorage = new int[3] {0,0,0};
     List<string> colonyBuildingsList = new List<string>();
@@ -32,10 +34,17 @@ public class Colonymechanics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Since it's the first planet the player get's 400 starter Ore so he can build a Power Plant and a mine.
+        planetStorage[0] = 400;
         //Checking already existing Buildings
         checkBuildingsList();
         //the routine to update the resources
         StartCoroutine(ResourceUpdate());
+        /*
+        GameObject mine1 = Instantiate(mine, new Vector3(0, 0, 0), Quaternion.identity, transform);
+        MineScript mine1Script = mine1.GetComponent<MineScript>();
+        int[] costs = mine1Script.GetConstructionCosts();
+        Debug.Log($"{costs[0]}+{costs[1]}+{costs[2]}"); */
     }
 
     // Update is called once per frame
@@ -43,6 +52,7 @@ public class Colonymechanics : MonoBehaviour
     {
         UpdateDisplay();
         lookAroundPlanet();
+        
     }
 
     void checkBuildingsList()
@@ -134,7 +144,7 @@ public class Colonymechanics : MonoBehaviour
         if (planetStorage[0] >= 200)
         {
             colonyBuildingsList.Add("mine");
-            StartCoroutine(buildingPlacement(mineBuilding));
+            StartCoroutine(buildingPlacement(mine));
             planetStorage[0] = planetStorage[0] - 200;
             checkBuildingsList();
         }
