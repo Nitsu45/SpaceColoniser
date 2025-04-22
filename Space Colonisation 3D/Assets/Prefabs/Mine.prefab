@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5428957597343188979}
   - component: {fileID: 2589763861354724221}
   - component: {fileID: 5365695838371499122}
+  - component: {fileID: 5808213561548572927}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -83,3 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5808213561548572927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747247987909380482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fa5080fe3568747b613a5369515a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: mine
+  OreCost: 200
+  EnergyCost: 50
+  manPowerCost: 10
+  oreProduction: 50
+  energyProduction: 0
+  manpower: 0
