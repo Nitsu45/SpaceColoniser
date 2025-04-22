@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &56409353
 Transform:
   m_ObjectHideFlags: 0
@@ -156,6 +156,7 @@ Transform:
   - {fileID: 1931544405}
   - {fileID: 2014745160}
   - {fileID: 165967396}
+  - {fileID: 258488114}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -169,9 +170,10 @@ GameObject:
   m_Component:
   - component: {fileID: 165967396}
   - component: {fileID: 165967397}
+  - component: {fileID: 165967398}
   m_Layer: 0
   m_Name: TemplateBuilding
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,6 +212,35 @@ MonoBehaviour:
   oreProduction: 0
   energyProduction: 0
   manpower: 0
+--- !u!114 &165967398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165967395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e92801ef9eaf9546aea5688acb2e16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  OreCost: 0
+  EnergyCost: 0
+  manPowerCost: 0
+  oreProduction: 0
+  energyProduction: 0
+  manpower: 0
+--- !u!1 &258488113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 747247987909380482, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+  m_PrefabInstance: {fileID: 551712923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &258488114 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+  m_PrefabInstance: {fileID: 551712923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &285961669
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +325,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1102764972}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Colonymechanics, Assembly-CSharp
         m_MethodName: BuyPPButton
         m_Mode: 1
@@ -428,7 +459,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1102764972}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Colonymechanics, Assembly-CSharp
         m_MethodName: BuyHouseButton
         m_Mode: 1
@@ -489,7 +520,7 @@ GameObject:
   - component: {fileID: 368263366}
   m_Layer: 0
   m_Name: House
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,8 +552,9 @@ GameObject:
   - component: {fileID: 428225592}
   - component: {fileID: 428225591}
   - component: {fileID: 428225590}
+  - component: {fileID: 428225594}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: TestPlanet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,11 +642,166 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1102764971}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &428225594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428225589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aab4413386b7c43a976d020b6099e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oreProduction: 0
+  energyProduction: 0
+  manpower: 0
+  TickTimer: 5
+  planetStorage: 000000000000000000000000
+--- !u!1 &515919207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 515919208}
+  - component: {fileID: 515919210}
+  - component: {fileID: 515919209}
+  m_Layer: 5
+  m_Name: UI-Script
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &515919208
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515919207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 802482500}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &515919209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515919207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ad420a3b5a27543820aaa47aa2e7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  template: {fileID: 165967395}
+  mine: {fileID: 258488113}
+  powerplant: {fileID: 1057782070}
+  house: {fileID: 368263365}
+  spacestation: {fileID: 1931544404}
+  rocketstation: {fileID: 2014745159}
+--- !u!114 &515919210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515919207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204055adb7b1d2d468fae83c43f80d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 963194227}
+  OreProductionDisplay: {fileID: 1757590938}
+  OreDisplay: {fileID: 2016373745}
+  EnergyProductionDisplay: {fileID: 768470317}
+  ManPowerDisplay: {fileID: 1829274693}
+  SelectedPlanet: {fileID: 428225589}
+--- !u!1001 &551712923
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 56409353}
+    m_Modifications:
+    - target: {fileID: 747247987909380482, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_Name
+      value: Mine
+      objectReference: {fileID: 0}
+    - target: {fileID: 747247987909380482, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_TagString
+      value: Buildings
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +1078,7 @@ RectTransform:
   - {fileID: 1656860939}
   - {fileID: 285961670}
   - {fileID: 328672573}
+  - {fileID: 515919208}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1002,7 +1190,7 @@ GameObject:
   - component: {fileID: 1057782071}
   m_Layer: 0
   m_Name: PowerPlant
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1157,60 +1345,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058168634}
   m_CullTransparentMesh: 1
---- !u!1 &1102764970
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1102764971}
-  - component: {fileID: 1102764972}
-  m_Layer: 0
-  m_Name: Planetmechanics
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1102764971
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102764970}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 428225593}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1102764972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102764970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5aab4413386b7c43a976d020b6099e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
-  OreProductionDisplay: {fileID: 1757590938}
-  OreDisplay: {fileID: 2016373745}
-  EnergyProductionDisplay: {fileID: 768470317}
-  ManPowerDisplay: {fileID: 1829274693}
-  oreProduction: 500
-  energyProduction: 0
-  manpower: 0
-  TickTimer: 5
-  mine: {fileID: 747247987909380482, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
 --- !u!1 &1241737086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,8 +1840,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1102764972}
-        m_TargetAssemblyTypeName: Colonymechanics, Assembly-CSharp
+      - m_Target: {fileID: 515919210}
+        m_TargetAssemblyTypeName: UIScript, Assembly-CSharp
         m_MethodName: BuyMineButton
         m_Mode: 1
         m_Arguments:
@@ -1927,7 +2061,7 @@ GameObject:
   - component: {fileID: 1931544405}
   m_Layer: 0
   m_Name: Space Station
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1958,7 +2092,7 @@ GameObject:
   - component: {fileID: 2014745160}
   m_Layer: 0
   m_Name: RocketStation
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
