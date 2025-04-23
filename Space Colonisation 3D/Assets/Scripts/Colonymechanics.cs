@@ -16,7 +16,8 @@ public class Colonymechanics : MonoBehaviour
     public int oreProduction = 0;
     public int energyProduction = 0;
     public int manpower = 0;
-    public float TickTimer = 60f;
+    public float tickTimer = 60f;
+    public string planetName;
     
 
     public int[] planetStorage = new int[3] {0,0,0};
@@ -25,7 +26,9 @@ public class Colonymechanics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Since it's the first planet the player get's 400 starter Ore so he can build a Power Plant and a mine.
+        //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
+        if (planetName == null) planetName = "";
+        //Since it's the first planet the player get's 400 starter Ore so he can build a Power Plant and a mine
         planetStorage[0] = 400;
         planetStorage[1] = 200;
         planetStorage[2] = 200;
@@ -101,7 +104,7 @@ public class Colonymechanics : MonoBehaviour
             planetStorage[0] = planetStorage[0] + oreProduction;
            // planetStorage[1] = energyProduction;
            // planetStorage[2] = manpower;
-            yield return new WaitForSecondsRealtime(TickTimer);
+            yield return new WaitForSecondsRealtime(tickTimer);
         }
     }
 

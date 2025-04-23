@@ -11,6 +11,7 @@ public class UIScript : MonoBehaviour
     public Text OreDisplay;
     public Text EnergyProductionDisplay;
     public Text ManPowerDisplay;
+    public Text PlanetNameDisplay;
 
     public GameObject SelectedPlanet;
 
@@ -30,6 +31,7 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         UpdateDisplay();
         lookAroundPlanet();
     }
@@ -48,6 +50,7 @@ public class UIScript : MonoBehaviour
     //Updates the displayed text with the current values of the selected Colony
     void UpdateDisplay()
     {
+        PlanetNameDisplay.text = SelectedColony.planetName;
         OreProductionDisplay.text = $"Ore Production: {SelectedColony.oreProduction}/m";
         OreDisplay.text = $"Ore: {SelectedColony.planetStorage[0]}";
         EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage[1]}";
