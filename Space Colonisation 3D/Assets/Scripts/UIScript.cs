@@ -61,23 +61,46 @@ public class UIScript : MonoBehaviour
     //Button that allows you to buy a mine (temporary feature)
     public void BuyMineButton()
     {
-        //The 
-        if (ConstructionScript.ConstructingBuilding("mine", SelectedColony.planetStorage))
+        // Calling the ConstructBuilding function and pass the planet inventory and the building type
+        //If there are enough resources the player can place the building and the cost ist subtracted from the inventory
+        //if not it generates an error message
+        string buildingToAdd = "mine";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
         {
-            SelectedColony.AddingBuildingToColony("mine");
-            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts("mine", SelectedColony.planetStorage);
+            SelectedColony.AddingBuildingToColony(buildingToAdd);
+            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
         }
         else Debug.Log("Building could not be constructed");
     }
     //Button that allows you to buy a powerplant (temporary feature)
     public void BuyPPButton()
     {
-        //Inactive
+        string buildingToAdd = "powerplant";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
+        {
+            SelectedColony.AddingBuildingToColony(buildingToAdd);
+            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
+        }
+        else Debug.Log("Building could not be constructed");
     }
     //Button that allows you to buy a house (temporary feature)
     public void BuyHouseButton()
     {
-        //Inactive
+        string buildingToAdd = "house";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
+        {
+            SelectedColony.AddingBuildingToColony(buildingToAdd);
+            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
+        }
+    }
+    public void BuyRocketStationButton()
+    {
+        string buildingToAdd = "rocketstation";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
+        {
+            SelectedColony.AddingBuildingToColony(buildingToAdd);
+            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
+        }
     }
 
 }

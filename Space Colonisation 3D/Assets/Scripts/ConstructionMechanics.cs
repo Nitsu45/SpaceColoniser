@@ -95,6 +95,8 @@ public class ConstructionMechanics : MonoBehaviour
                 return powerplant;
             case "house":
                 return house;
+            case "rocketstation":
+                return rocketstation;
             default:
                 return template;
         }

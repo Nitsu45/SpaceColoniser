@@ -28,9 +28,10 @@ public class Colonymechanics : MonoBehaviour
     {
         //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
         if (planetName == null) planetName = "";
-        //Since it's the first planet the player get's 400 starter Ore so he can build a Power Plant and a mine
+        //Since it's the first planet the player get's 400 starter Ore and a Power Plant and a house
         planetStorage[0] = 400;
-        planetStorage[1] = 200;
+        AddingBuildingToColony("powerplant");
+        AddingBuildingToColony("house");
         planetStorage[2] = 200;
         //Checking already existing Buildings
         checkBuildingsList();
@@ -64,11 +65,11 @@ public class Colonymechanics : MonoBehaviour
                     break;
                 case "powerplant":
                     temporaryProductionCounter[1] = temporaryProductionCounter[1] + 50;
-                    energyProduction = temporaryProductionCounter[1];
+                    planetStorage[1] = temporaryProductionCounter[1];
                     break;
                 case "house":
                     temporaryProductionCounter[2] = temporaryProductionCounter[2] + 50;
-                    manpower = temporaryProductionCounter[2];
+                    planetStorage[2] = temporaryProductionCounter[2];
                     break;
                 default:
                     Debug.Log("No resource Building");
@@ -102,8 +103,8 @@ public class Colonymechanics : MonoBehaviour
         while(true)
         {
             planetStorage[0] = planetStorage[0] + oreProduction;
-           // planetStorage[1] = energyProduction;
-           // planetStorage[2] = manpower;
+            //planetStorage[1] = energyProduction;
+            //planetStorage[2] = manpower;
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }
