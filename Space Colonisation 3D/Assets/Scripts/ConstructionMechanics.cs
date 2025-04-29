@@ -59,7 +59,7 @@ public class ConstructionMechanics : MonoBehaviour
 
     }
     //Checking if enough resources are available for construction
-    bool CheckingConstructionCosts(int[] costs, int[] availableResources)
+    public bool CheckingConstructionCosts(int[] costs, int[] availableResources)
     {
         for (int i = 0; i < costs.Length; i++)
         {
@@ -85,7 +85,7 @@ public class ConstructionMechanics : MonoBehaviour
 
     //Gets the respective Gameobject by the name of it. This is to not have countless references to them in all of the scripts.
     //This way all of the references are in one place and you can get them by using a simple string.
-    GameObject GettingBuildingByName(string buildingName)
+    public GameObject GettingBuildingByName(string buildingName)
     {
         switch (buildingName)
         {
@@ -97,6 +97,8 @@ public class ConstructionMechanics : MonoBehaviour
                 return house;
             case "rocketstation":
                 return rocketstation;
+            case "spacestation":
+                return spacestation;
             default:
                 return template;
         }

@@ -9,8 +9,8 @@ public class SpaceStationScript : BuildingScript
         Name = "spacestation";
         energyProduction = 100;
         manpower = 100;
-        OreCost = 1000;
-        EnergyCost = 0;
+        oreCost = 1000;
+        energyCost = 0;
         manPowerCost = 0;
     }
     // Start is called before the first frame update

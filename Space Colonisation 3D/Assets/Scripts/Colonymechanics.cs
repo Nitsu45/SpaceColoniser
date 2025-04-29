@@ -9,8 +9,8 @@ using UnityEngine.UIElements;
 public class Colonymechanics : MonoBehaviour
 {
     //Reference
-
-
+    public GameObject UIScript;
+    ConstructionMechanics ConstructionScript;
 
     //Global variables
     public int oreProduction = 0;
@@ -26,6 +26,7 @@ public class Colonymechanics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ConstructionScript = UIScript.GetComponent<ConstructionMechanics>();
         //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
         if (planetName == null) planetName = "";
         //Since it's the first planet the player get's 400 starter Ore and a Power Plant and a house
@@ -57,19 +58,25 @@ public class Colonymechanics : MonoBehaviour
         // They first count how many resources the colony produces before assigning the value
         foreach (var item in colonyBuildingsList)
         {
+            BuildingScript ConstructedBuildingProperties = ConstructionScript.GettingBuildingByName(item).GetComponent<BuildingScript>();
+            int[] ResourceProduction = ConstructedBuildingProperties.GetResourceProduction();
             switch (item)
             {
                 case "mine":
-                    temporaryProductionCounter[0] = temporaryProductionCounter[0] + 50;
+                    temporaryProductionCounter[0] = temporaryProductionCounter[0] + ResourceProduction[0];
                     oreProduction = temporaryProductionCounter[0];
                     break;
                 case "powerplant":
-                    temporaryProductionCounter[1] = temporaryProductionCounter[1] + 50;
-                    planetStorage[1] = temporaryProductionCounter[1];
+                    temporaryProductionCounter[1] = temporaryProductionCounter[1] + ResourceProduction[1];
+                    energyProduction = temporaryProductionCounter[1];
                     break;
                 case "house":
-                    temporaryProductionCounter[2] = temporaryProductionCounter[2] + 50;
-                    planetStorage[2] = temporaryProductionCounter[2];
+                    temporaryProductionCounter[2] = temporaryProductionCounter[2] + ResourceProduction[2];
+                    manpower = temporaryProductionCounter[2];
+                    break;
+                case "rocketstation":
+                    break;
+                case "spacestation":
                     break;
                 default:
                     Debug.Log("No resource Building");
@@ -103,8 +110,8 @@ public class Colonymechanics : MonoBehaviour
         while(true)
         {
             planetStorage[0] = planetStorage[0] + oreProduction;
-            //planetStorage[1] = energyProduction;
-            //planetStorage[2] = manpower;
+            planetStorage[1] = energyProduction;
+            planetStorage[2] = manpower;
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }

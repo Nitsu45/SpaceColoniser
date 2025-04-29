@@ -8,8 +8,8 @@ public class HouseScript : BuildingScript
     {
         Name = "house";
         manpower = 100;
-        OreCost = 200;
-        EnergyCost = 50;
+        oreCost = 200;
+        energyCost = 50;
         manPowerCost = 0;
     }
     // Start is called before the first frame update

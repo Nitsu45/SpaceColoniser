@@ -93,6 +93,7 @@ public class UIScript : MonoBehaviour
             SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
         }
     }
+    //Button that allows you to buy a Rocket Station (temporary feature)
     public void BuyRocketStationButton()
     {
         string buildingToAdd = "rocketstation";
@@ -101,6 +102,12 @@ public class UIScript : MonoBehaviour
             SelectedColony.AddingBuildingToColony(buildingToAdd);
             SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
         }
+    }
+    //Button that allows you to buy a Space Station (temporary feature)
+    public void BuySpaceStationButton()
+    {
+        //Check if a rocket Station exists on the planet
+        //THen allow the player to build a Space Sation on the next planet
     }
 
 }

@@ -7,8 +7,8 @@ public class RocketStation : BuildingScript
     public RocketStation()
     {
         Name = "rocket station";
-        OreCost = 1000;
-        EnergyCost = 500;
+        oreCost = 1000;
+        energyCost = 500;
         manPowerCost = 500;
     }
     

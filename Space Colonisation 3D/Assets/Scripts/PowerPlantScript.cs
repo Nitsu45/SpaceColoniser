@@ -8,8 +8,8 @@ public class PowerPlantScript : BuildingScript
     {
         Name = "powerplant";
         energyProduction = 100;
-        OreCost = 200;
-        EnergyCost = 0;
+        oreCost = 200;
+        energyCost = 0;
         manPowerCost = 10;
         
     }
