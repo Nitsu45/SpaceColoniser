@@ -12,6 +12,7 @@ public class UIScript : MonoBehaviour
     public Text EnergyProductionDisplay;
     public Text ManPowerDisplay;
     public Text PlanetNameDisplay;
+    public Button LaunchRocketButton;
 
     public GameObject SelectedPlanet;
 
@@ -109,5 +110,17 @@ public class UIScript : MonoBehaviour
         //Check if a rocket Station exists on the planet
         //THen allow the player to build a Space Sation on the next planet
     }
+    //Here should be a button opening the rocket station menu when the building is selected
+    public void LaunchRocketButtonFunction()
+    { 
+    // The player should be able to select a planet to shoot the rocket to, but for development purposes it's just one other planet that get's choosen automatically
+    // Add Space Station building to Testplanet1 when the player has enough resources
+    // Add possibility to switch to the other Planet
+
+
+
+    }
+
+
 
 }
