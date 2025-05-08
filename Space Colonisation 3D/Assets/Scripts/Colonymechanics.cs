@@ -22,22 +22,17 @@ public class Colonymechanics : MonoBehaviour
     public string planetName;
     public bool hasRocketStation = false;
 
-    int[] buildingCounter;
     public int[] planetStorage = new int[3] { 0, 0, 0 };
-    List<string> colonyBuildingsList = new List<string>();
+    List<GameObject> colonyBuildingsList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        buildingCounter = NumerateBuildings();
         ConstructionScript = UIScript.GetComponent<ConstructionMechanics>();
         //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
         if (planetName == null) planetName = "";
-        //Since it's the first planet the player get's 400 starter Ore and a Power Plant and a house
+        //Adding starter resources
         planetStorage[0] = 400;
-        AddingBuildingToColony("powerplant");
-        AddingBuildingToColony("house");
-        planetStorage[2] = 200;
         //Checking already existing Buildings
         checkBuildingsList();
         //the routine to update the resources
@@ -53,6 +48,7 @@ public class Colonymechanics : MonoBehaviour
     void Update()
     {
         checkBuildingsList();
+        
     }
     //Check buildings list and adjust resource production
     void checkBuildingsList()
@@ -63,10 +59,10 @@ public class Colonymechanics : MonoBehaviour
         foreach (var item in colonyBuildingsList)
         {
             //Funktion zum zählen aller einzelnen Einträge des jeweiligen Gebäude Types.
-            BuildingScript ConstructedBuildingProperties = ConstructionScript.GettingBuildingByName(item).GetComponent<BuildingScript>();
+            BuildingScript ConstructedBuildingProperties = item.GetComponent<BuildingScript>();
             int[] resourceProduction = ConstructedBuildingProperties.GetResourceProduction();
             int[] resourceConsumption = ConstructedBuildingProperties.GetConstructionCosts();
-            switch (item)
+            switch (ConstructedBuildingProperties.Name)
             {
                 case "mine":
                     //Production
@@ -112,74 +108,19 @@ public class Colonymechanics : MonoBehaviour
 
 
     }
-    //Checks the number of buildings and adjusts resource production and consumption
-    void CheckBuildingCounter()
-    {
-
-
-        // They first count how many resources the colony produces before assigning the value
-        for (int i = 0; i < buildingCounter.Length; i++)
-        {
-
-            //Funktion zum zählen aller einzelnen Einträge des jeweiligen Gebäude Types.
-            
-            switch (i)
-            {
-                case 1:
-                    //Das Problem ist, wenn ich die ID bereits hab, müsste es einen mechanismus gegebn, der es mir erlaubt alle Klassen die "BuildingScript" untergeordnet sind zu durchlaufen und anschließend doe Produktions und Kostenwerte abzufragen. 
-                    //Am besten wäre es eine Liste aller existenten Gebäude abzufragen und diese numerisch durchzugehen und die ID abzufragen. Wenn der Id wert für das entsprechende Feld gefunden ist
-                    //können die Produktions und Verbreauchswerte abgefragt, und mit der Zahl der Gebäude mulipliziert werden.
-                    BuildingScript ConstructedBuildingProperties = ConstructionScript.GettingBuildingByName("mine").GetComponent<BuildingScript>();
-                    int[] resourceProduction = ConstructedBuildingProperties.GetResourceProduction();
-                    int[] resourceConsumption = ConstructedBuildingProperties.GetConstructionCosts();
-                    //Production
-
-                    //Consumption
-                    //Energy
-
-                    //Manpower
-
-                    break;
-                case 2:
-                    //Production 
-                   
-                    //Consumption
-
-                    break;
-                case 3:
-                    //Production
-                    
-                    //Consumption
-
-                    break;
-                case 4:
-                    //Production
-                    //Consumption
-                    break;
-                case 5:
-                    //Production
-                    //Consumption
-                    break;
-                default:
-                    Debug.Log($"Building is not valid! Building ID: {i}");
-                    break;
-            }
-        }
-
-    }
-
+   
 
     //Adding a building to the building-list of that planet
 
-    public void AddingBuildingToColony(string buildingName)
+    public void AddingBuildingToColony(GameObject Building)
     {
-        colonyBuildingsList.Add(buildingName);
+        colonyBuildingsList.Add(Building);
         checkBuildingsList();
     }
     //Deleting a building from the colony
     public void DeletingBuildingFromColony(string buildingName)
     {
-        colonyBuildingsList.Remove(buildingName);
+        //colonyBuildingsList.Remove(buildingName);
     }
 
 
@@ -190,8 +131,8 @@ public class Colonymechanics : MonoBehaviour
         while (true)
         {
             planetStorage[0] = planetStorage[0] + oreProduction;
-            planetStorage[1] = energyProduction;
-            planetStorage[2] = manpower;
+            planetStorage[1] = energyProduction + 50;
+            planetStorage[2] = manpower + 50;
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }

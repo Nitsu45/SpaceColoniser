@@ -7,7 +7,6 @@ public class BuildingScript : MonoBehaviour
     //Building Name
     public string Name = "";
     //Build costs
-    public int buildingID = 0; //ID is for numerating and better accessing the right building type then by string
     public int oreCost = 0;
     public int energyCost = 0; //energy is a constant cost, meaning it doesn't get substracted one time during construction, but instead occupys this amount of energy as long as it exists
     public int manPowerCost = 0; //manpower is a constant cost, meaning it doesn't get substracted one time during construction, but instead occupys this amount of energy as long as it exists

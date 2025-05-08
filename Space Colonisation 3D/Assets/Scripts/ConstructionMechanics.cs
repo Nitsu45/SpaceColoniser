@@ -17,7 +17,7 @@ public class ConstructionMechanics : MonoBehaviour
 
 
     GameObject[] ListOfBuildings;
-
+    
 
 
 
@@ -46,13 +46,19 @@ public class ConstructionMechanics : MonoBehaviour
      When the Colony has enough resources, these are saved in the planetInventory array, then the function returns true and the player get's to place the building.
      */
 
-    public bool ConstructingBuilding(string buildingName, int[] planetInventory)
+    public bool ConstructingBuilding(string buildingName, Colonymechanics SelectedColony )
     {
         GameObject ConstructedBuilding = GettingBuildingByName(buildingName);
         BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
-        if(CheckingConstructionCosts(ConstructedBuildingProperties.GetConstructionCosts(),planetInventory))
+        if(CheckingConstructionCosts(ConstructedBuildingProperties.GetConstructionCosts(),SelectedColony.planetStorage))
         {
             StartCoroutine(buildingPlacement(ConstructedBuilding));
+            //if the building coroutine succeeds, the building class should then call the add building function of the colony mechanics class
+            SelectedColony.AddingBuildingToColony(ConstructedBuilding);
+            SelectedColony.planetStorage = SubstractingConstrctuionCosts(buildingName, SelectedColony.planetStorage);
+
+
+
             return true;
         }else return false;
 
