@@ -37,11 +37,6 @@ public class Colonymechanics : MonoBehaviour
         checkBuildingsList();
         //the routine to update the resources
         StartCoroutine(ResourceUpdate());
-        /*
-        GameObject mine1 = Instantiate(mine, new Vector3(0, 0, 0), Quaternion.identity, transform);
-        MineScript mine1Script = mine1.GetComponent<MineScript>();
-        int[] costs = mine1Script.GetConstructionCosts();
-        Debug.Log($"{costs[0]}+{costs[1]}+{costs[2]}"); */
     }
 
     // Update is called once per frame
@@ -53,7 +48,8 @@ public class Colonymechanics : MonoBehaviour
     //Check buildings list and adjust resource production
     void checkBuildingsList()
     {
-        int[] temporaryProductionCounter = new int[3];
+        int[] temporaryProductionCounter = new int[3]; // Array gets initialised later in code because we need to get the lenght of resource array first 
+        int[] temporaryConsumptionCounter = new int[3]; // Array gets initialised later in code because we need to get the lenght of resource array first 
 
         // They first count how many resources the colony produces before assigning the value
         foreach (var item in colonyBuildingsList)
@@ -62,49 +58,23 @@ public class Colonymechanics : MonoBehaviour
             BuildingScript ConstructedBuildingProperties = item.GetComponent<BuildingScript>();
             int[] resourceProduction = ConstructedBuildingProperties.GetResourceProduction();
             int[] resourceConsumption = ConstructedBuildingProperties.GetConstructionCosts();
-            switch (ConstructedBuildingProperties.Name)
+
+
+            for (int i = 0; i < temporaryProductionCounter.Length; i++)
             {
-                case "mine":
-                    //Production
-                    temporaryProductionCounter[0] = temporaryProductionCounter[0] + resourceProduction[0];
-                    oreProduction = temporaryProductionCounter[0];
-                    //Consumption
-                    //Energy
-
-                    //Manpower
-                    /* 
-                     buildingCounter[buildingScript.buildingID]++; 
-                     */
-
-                    break;
-                case "powerplant":
-                    //Production
-                    temporaryProductionCounter[1] = temporaryProductionCounter[1] + resourceProduction[1];
-                    energyProduction = temporaryProductionCounter[1];
-                    //Consumption
-
-                    break;
-                case "house":
-                    //Production
-                    temporaryProductionCounter[2] = temporaryProductionCounter[2] + resourceProduction[2];
-                    manpower = temporaryProductionCounter[2];
-                    //Consumption
-
-                    break;
-                case "rocketstation":
-                    //Production
-                    //Consumption
-                    break;
-                case "spacestation":
-                    //Production
-                    //Consumption
-                    break;
-                default:
-                    Debug.Log("No resource Building");
-                    break;
+                temporaryProductionCounter[i] = temporaryProductionCounter[i] + resourceProduction[i];
+            }
+            for (int i = 0; i < temporaryConsumptionCounter.Length; i++)
+            {
+                temporaryConsumptionCounter[i] = temporaryConsumptionCounter[i] + resourceConsumption[i];
             }
         }
-
+        //assigning the planetary values with the result from counting the buildings production and consumption together
+        oreProduction = temporaryProductionCounter[0];
+        energyProduction = temporaryProductionCounter[1];
+        manpower = temporaryProductionCounter[2];
+        energyConsumption = temporaryConsumptionCounter[1];
+        manpowerConsumption = temporaryConsumptionCounter[2];
 
 
     }
@@ -131,8 +101,8 @@ public class Colonymechanics : MonoBehaviour
         while (true)
         {
             planetStorage[0] = planetStorage[0] + oreProduction;
-            planetStorage[1] = energyProduction + 50;
-            planetStorage[2] = manpower + 50;
+            planetStorage[1] = energyProduction + 50 - energyConsumption;
+            planetStorage[2] = manpower + 50 - manpowerConsumption;
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }

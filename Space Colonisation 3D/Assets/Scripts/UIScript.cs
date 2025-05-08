@@ -56,6 +56,8 @@ public class UIScript : MonoBehaviour
         OreDisplay.text = $"Ore: {SelectedColony.planetStorage[0]}";
         EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage[1]}";
         ManPowerDisplay.text = $"Man Power:  {SelectedColony.planetStorage[2]}";
+        if (SelectedColony.hasRocketStation) Instantiate(LaunchRocketButton);
+        else DestroyImmediate(LaunchRocketButton);
     }
 
     //Button functions

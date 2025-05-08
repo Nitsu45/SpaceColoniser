@@ -1009,7 +1009,7 @@ MonoBehaviour:
   EnergyProductionDisplay: {fileID: 768470317}
   ManPowerDisplay: {fileID: 1829274693}
   PlanetNameDisplay: {fileID: 234086445}
-  LaunchRocketButton: {fileID: 738777707}
+  LaunchRocketButton: {fileID: 1904100254}
   SelectedPlanet: {fileID: 428225589}
 --- !u!1001 &551712923
 PrefabInstance:
