@@ -33,6 +33,7 @@ public class Colonymechanics : MonoBehaviour
         if (planetName == null) planetName = "";
         //Adding starter resources
         planetStorage[0] = 400;
+        AddingBuildingToColony(Instantiate(ConstructionScript.spacestation));
         //Checking already existing Buildings
         checkBuildingsList();
         //the routine to update the resources
@@ -101,8 +102,8 @@ public class Colonymechanics : MonoBehaviour
         while (true)
         {
             planetStorage[0] = planetStorage[0] + oreProduction;
-            planetStorage[1] = energyProduction + 50 - energyConsumption;
-            planetStorage[2] = manpower + 50 - manpowerConsumption;
+            planetStorage[1] = energyProduction - energyConsumption;
+            planetStorage[2] = manpower - manpowerConsumption;
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }

@@ -14,6 +14,7 @@ public class UIScript : MonoBehaviour
     public Text PlanetNameDisplay;
     public Button LaunchRocketButton;
 
+    public GameObject nextPlanet;
     public GameObject SelectedPlanet;
 
     Colonymechanics SelectedColony;
@@ -56,8 +57,7 @@ public class UIScript : MonoBehaviour
         OreDisplay.text = $"Ore: {SelectedColony.planetStorage[0]}";
         EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage[1]}";
         ManPowerDisplay.text = $"Man Power:  {SelectedColony.planetStorage[2]}";
-        if (SelectedColony.hasRocketStation) Instantiate(LaunchRocketButton);
-        else DestroyImmediate(LaunchRocketButton);
+        
     }
 
     //Button functions
@@ -110,15 +110,28 @@ public class UIScript : MonoBehaviour
     }
     //Here should be a button opening the rocket station menu when the building is selected
     public void LaunchRocketButtonFunction()
-    { 
-    // The player should be able to select a planet to shoot the rocket to, but for development purposes it's just one other planet that get's choosen automatically
-    // Add Space Station building to Testplanet1 when the player has enough resources
-    // Add possibility to switch to the other Planet
+    {
+        // The player should be able to select a planet to shoot the rocket to, but for development purposes it's just one other planet that get's choosen automatically
+        // Add Space Station building to Testplanet1 when the player has enough resources
+        // Add possibility to switch to the other Planet
+        
 
-
+        if (!SelectedColony.hasRocketStation) return;
+        nextPlanet.GetComponent<Colonymechanics>().AddingBuildingToColony(ConstructionScript.spacestation);
+        ChangePlanets();
+        
 
     }
+    public void ChangePlanets()
+    {
+        GameObject Planetbuffer = SelectedPlanet;
+        SelectedPlanet = nextPlanet;
+        nextPlanet = Planetbuffer;
+        mainCamera.transform.LookAt(SelectedPlanet.transform, new Vector3(0, 0, -10));
+        SelectedColony = SelectedPlanet.GetComponent<Colonymechanics>();
+        ConstructionScript = GetComponent<ConstructionMechanics>();
 
+    }
 
 
 }
