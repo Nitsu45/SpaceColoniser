@@ -12,7 +12,9 @@ public class UIScript : MonoBehaviour
     public Text EnergyProductionDisplay;
     public Text ManPowerDisplay;
     public Text PlanetNameDisplay;
+    public Button LaunchRocketButton;
 
+    public GameObject nextPlanet;
     public GameObject SelectedPlanet;
 
     Colonymechanics SelectedColony;
@@ -43,7 +45,7 @@ public class UIScript : MonoBehaviour
         {
             float mouseX = Input.GetAxisRaw("Mouse X") * 20;
 
-            mainCamera.transform.RotateAround(transform.position, new Vector3(0, mouseX, 0), 200f * Time.deltaTime);
+            mainCamera.transform.RotateAround(transform.position, new Vector3(0, mouseX, 0), 20f * Time.deltaTime);
         }
     }
 
@@ -55,6 +57,7 @@ public class UIScript : MonoBehaviour
         OreDisplay.text = $"Ore: {SelectedColony.planetStorage[0]}";
         EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage[1]}";
         ManPowerDisplay.text = $"Man Power:  {SelectedColony.planetStorage[2]}";
+        
     }
 
     //Button functions
@@ -65,10 +68,9 @@ public class UIScript : MonoBehaviour
         //If there are enough resources the player can place the building and the cost ist subtracted from the inventory
         //if not it generates an error message
         string buildingToAdd = "mine";
-        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
         {
-            SelectedColony.AddingBuildingToColony(buildingToAdd);
-            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
+            
         }
         else Debug.Log("Building could not be constructed");
     }
@@ -76,10 +78,9 @@ public class UIScript : MonoBehaviour
     public void BuyPPButton()
     {
         string buildingToAdd = "powerplant";
-        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
         {
-            SelectedColony.AddingBuildingToColony(buildingToAdd);
-            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
+           
         }
         else Debug.Log("Building could not be constructed");
     }
@@ -87,20 +88,18 @@ public class UIScript : MonoBehaviour
     public void BuyHouseButton()
     {
         string buildingToAdd = "house";
-        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
         {
-            SelectedColony.AddingBuildingToColony(buildingToAdd);
-            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
+            
         }
     }
     //Button that allows you to buy a Rocket Station (temporary feature)
     public void BuyRocketStationButton()
     {
         string buildingToAdd = "rocketstation";
-        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony.planetStorage))
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
         {
-            SelectedColony.AddingBuildingToColony(buildingToAdd);
-            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts(buildingToAdd, SelectedColony.planetStorage);
+            
         }
     }
     //Button that allows you to buy a Space Station (temporary feature)
@@ -109,5 +108,30 @@ public class UIScript : MonoBehaviour
         //Check if a rocket Station exists on the planet
         //THen allow the player to build a Space Sation on the next planet
     }
+    //Here should be a button opening the rocket station menu when the building is selected
+    public void LaunchRocketButtonFunction()
+    {
+        // The player should be able to select a planet to shoot the rocket to, but for development purposes it's just one other planet that get's choosen automatically
+        // Add Space Station building to Testplanet1 when the player has enough resources
+        // Add possibility to switch to the other Planet
+        
+
+        if (!SelectedColony.hasRocketStation) return;
+        nextPlanet.GetComponent<Colonymechanics>().AddingBuildingToColony(ConstructionScript.spacestation);
+        ChangePlanets();
+        
+
+    }
+    public void ChangePlanets()
+    {
+        GameObject Planetbuffer = SelectedPlanet;
+        SelectedPlanet = nextPlanet;
+        nextPlanet = Planetbuffer;
+        mainCamera.transform.LookAt(SelectedPlanet.transform, new Vector3(0, 0, -10));
+        SelectedColony = SelectedPlanet.GetComponent<Colonymechanics>();
+        ConstructionScript = GetComponent<ConstructionMechanics>();
+
+    }
+
 
 }

@@ -16,12 +16,14 @@ public class Colonymechanics : MonoBehaviour
     public int oreProduction = 0;
     public int energyProduction = 0;
     public int manpower = 0;
+    public int energyConsumption;
+    public int manpowerConsumption;
     public float tickTimer = 60f;
     public string planetName;
-    
+    public bool hasRocketStation = false;
 
-    public int[] planetStorage = new int[3] {0,0,0};
-    List<string> colonyBuildingsList = new List<string>();
+    public int[] planetStorage = new int[3] { 0, 0, 0 };
+    List<GameObject> colonyBuildingsList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -29,77 +31,67 @@ public class Colonymechanics : MonoBehaviour
         ConstructionScript = UIScript.GetComponent<ConstructionMechanics>();
         //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
         if (planetName == null) planetName = "";
-        //Since it's the first planet the player get's 400 starter Ore and a Power Plant and a house
+        //Adding starter resources
         planetStorage[0] = 400;
-        AddingBuildingToColony("powerplant");
-        AddingBuildingToColony("house");
-        planetStorage[2] = 200;
+        AddingBuildingToColony(Instantiate(ConstructionScript.spacestation));
         //Checking already existing Buildings
         checkBuildingsList();
         //the routine to update the resources
         StartCoroutine(ResourceUpdate());
-        /*
-        GameObject mine1 = Instantiate(mine, new Vector3(0, 0, 0), Quaternion.identity, transform);
-        MineScript mine1Script = mine1.GetComponent<MineScript>();
-        int[] costs = mine1Script.GetConstructionCosts();
-        Debug.Log($"{costs[0]}+{costs[1]}+{costs[2]}"); */
     }
 
     // Update is called once per frame
     void Update()
     {
         checkBuildingsList();
+        
     }
     //Check buildings list and adjust resource production
     void checkBuildingsList()
     {
-        int[] temporaryProductionCounter = new int[3];
-        
+        int[] temporaryProductionCounter = new int[3]; // Array gets initialised later in code because we need to get the lenght of resource array first 
+        int[] temporaryConsumptionCounter = new int[3]; // Array gets initialised later in code because we need to get the lenght of resource array first 
+
         // They first count how many resources the colony produces before assigning the value
         foreach (var item in colonyBuildingsList)
         {
-            BuildingScript ConstructedBuildingProperties = ConstructionScript.GettingBuildingByName(item).GetComponent<BuildingScript>();
-            int[] ResourceProduction = ConstructedBuildingProperties.GetResourceProduction();
-            switch (item)
+            //Funktion zum zählen aller einzelnen Einträge des jeweiligen Gebäude Types.
+            BuildingScript ConstructedBuildingProperties = item.GetComponent<BuildingScript>();
+            int[] resourceProduction = ConstructedBuildingProperties.GetResourceProduction();
+            int[] resourceConsumption = ConstructedBuildingProperties.GetConstructionCosts();
+
+
+            for (int i = 0; i < temporaryProductionCounter.Length; i++)
             {
-                case "mine":
-                    temporaryProductionCounter[0] = temporaryProductionCounter[0] + ResourceProduction[0];
-                    oreProduction = temporaryProductionCounter[0];
-                    break;
-                case "powerplant":
-                    temporaryProductionCounter[1] = temporaryProductionCounter[1] + ResourceProduction[1];
-                    energyProduction = temporaryProductionCounter[1];
-                    break;
-                case "house":
-                    temporaryProductionCounter[2] = temporaryProductionCounter[2] + ResourceProduction[2];
-                    manpower = temporaryProductionCounter[2];
-                    break;
-                case "rocketstation":
-                    break;
-                case "spacestation":
-                    break;
-                default:
-                    Debug.Log("No resource Building");
-                    break;
+                temporaryProductionCounter[i] = temporaryProductionCounter[i] + resourceProduction[i];
+            }
+            for (int i = 0; i < temporaryConsumptionCounter.Length; i++)
+            {
+                temporaryConsumptionCounter[i] = temporaryConsumptionCounter[i] + resourceConsumption[i];
             }
         }
-        
-        
-        
+        //assigning the planetary values with the result from counting the buildings production and consumption together
+        oreProduction = temporaryProductionCounter[0];
+        energyProduction = temporaryProductionCounter[1];
+        manpower = temporaryProductionCounter[2];
+        energyConsumption = temporaryConsumptionCounter[1];
+        manpowerConsumption = temporaryConsumptionCounter[2];
+
+
     }
-
-
+   
 
     //Adding a building to the building-list of that planet
 
-    public void AddingBuildingToColony(string buildingName)
+    public void AddingBuildingToColony(GameObject Building)
     {
-        colonyBuildingsList.Add(buildingName);
+        colonyBuildingsList.Add(Building);
+        checkBuildingsList();
     }
     //Deleting a building from the colony
     public void DeletingBuildingFromColony(string buildingName)
     {
-        colonyBuildingsList.Remove(buildingName);
+        //colonyBuildingsList.Remove(buildingName);
     }
 
 
@@ -107,15 +99,23 @@ public class Colonymechanics : MonoBehaviour
     //Resource update that adds the resources every 10 seconds
     IEnumerator ResourceUpdate()
     {
-        while(true)
+        while (true)
         {
             planetStorage[0] = planetStorage[0] + oreProduction;
-            planetStorage[1] = energyProduction;
-            planetStorage[2] = manpower;
+            planetStorage[1] = energyProduction - energyConsumption;
+            planetStorage[2] = manpower - manpowerConsumption;
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }
 
+    int[] NumerateBuildings()
+    {
+        
+
+
+
+        return new int[0];
+    }
     
 
 }
