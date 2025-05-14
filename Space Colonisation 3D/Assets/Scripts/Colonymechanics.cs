@@ -18,7 +18,7 @@ public class Colonymechanics : MonoBehaviour
     public int manpower = 0;
     public int energyConsumption;
     public int manpowerConsumption;
-    public float tickTimer = 60f;
+    public float tickTimer = 10f;
     public string planetName;
     public bool hasRocketStation = false;
 
@@ -31,9 +31,7 @@ public class Colonymechanics : MonoBehaviour
         ConstructionScript = UIScript.GetComponent<ConstructionMechanics>();
         //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
         if (planetName == null) planetName = "";
-        //Adding starter resources
-        planetStorage[0] = 400;
-        AddingBuildingToColony(Instantiate(ConstructionScript.spacestation));
+        
         //Checking already existing Buildings
         checkBuildingsList();
         //the routine to update the resources
@@ -117,5 +115,11 @@ public class Colonymechanics : MonoBehaviour
         return new int[0];
     }
     
+    public void getStarterResources()
+    {
+        //Adding starter resources 
+        planetStorage[0] = 400;
+        AddingBuildingToColony(Instantiate(ConstructionScript.spacestation));
+    }
 
 }

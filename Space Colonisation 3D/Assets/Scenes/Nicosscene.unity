@@ -1776,7 +1776,7 @@ MonoBehaviour:
   manpower: 0
   energyConsumption: 0
   manpowerConsumption: 0
-  tickTimer: 60
+  tickTimer: 10
   planetName: 
   hasRocketStation: 0
   planetStorage: 000000000000000000000000

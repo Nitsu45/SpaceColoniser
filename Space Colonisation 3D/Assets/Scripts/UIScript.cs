@@ -27,8 +27,11 @@ public class UIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         SelectedColony = SelectedPlanet.GetComponent<Colonymechanics>();
         ConstructionScript = GetComponent<ConstructionMechanics>();
+        //Getting starter resources on the first Planet
+        SelectedColony.getStarterResources();
     }
 
     // Update is called once per frame
@@ -113,12 +116,11 @@ public class UIScript : MonoBehaviour
     public void LaunchRocketButtonFunction()
     {
         // The player should be able to select a planet to shoot the rocket to, but for development purposes it's just one other planet that get's choosen automatically
-        // Add Space Station building to Testplanet1 when the player has enough resources
-        // Add possibility to switch to the other Planet
-        
+        //This button can be pressed as often as one wants, this will be fixed later with a method checking for a designated building in the colonys buildings list
 
         if (!SelectedColony.hasRocketStation) return;
         nextPlanet.GetComponent<Colonymechanics>().AddingBuildingToColony(ConstructionScript.spacestation);
+        nextPlanet.GetComponent<Colonymechanics>().planetStorage[0] = 400;
         ChangePlanets();    
         
 
@@ -130,9 +132,9 @@ public class UIScript : MonoBehaviour
         GameObject Planetbuffer = SelectedPlanet;
         //reseting camer to standard position
         mainCamera.transform.rotation = Quaternion.identity;
-        Vector3 standartPosition = new Vector3(0f - mainCamera.transform.position.x, 0, 0);
+        Vector3 standardPosition = new Vector3(0f - mainCamera.transform.position.x, 0, 0);
         
-        mainCamera.transform.Translate(standartPosition);
+        mainCamera.transform.Translate(standardPosition);
         
 
         SelectedPlanet = nextPlanet;
