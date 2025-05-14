@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|c:\\users\\user\\documents\\github\\spacecoloniser\\space colonisation 3d\\assets\\scripts\\uiscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\assets\\scripts\\uiscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uiscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|c:\\users\\user\\documents\\github\\spacecoloniser\\space colonisation 3d\\assets\\scripts\\constructionmechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\constructionmechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\assets\\scripts\\buildingscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\buildingscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\assets\\scripts\\minescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\minescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\assets\\scripts\\colonymechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\colonymechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|c:\\users\\user\\documents\\github\\spacecoloniser\\space colonisation 3d\\assets\\scripts\\colonymechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\colonymechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\assets\\scripts\\housescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\housescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\assets\\scripts\\constructionmechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC8314E5-A5D6-B13B-689F-0AD394BCEA61}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\constructionmechanics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,17 +30,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "HouseScript.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\HouseScript.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\HouseScript.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\HouseScript.cs",
+              "RelativeToolTip": "Assets\\Scripts\\HouseScript.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T22:38:53.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ConstructionMechanics.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\ConstructionMechanics.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ConstructionMechanics.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\ConstructionMechanics.cs",
               "RelativeToolTip": "Assets\\Scripts\\ConstructionMechanics.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAmwEYAAABgAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAACAmJmZmZkrwIwAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T11:37:16.659Z",
               "EditorCaption": ""
@@ -53,46 +66,33 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\UIScript.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\UIScript.cs",
               "RelativeToolTip": "Assets\\Scripts\\UIScript.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAswBgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAACQmZmZmVkqwJIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T11:14:21.073Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "BuildingScript.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\BuildingScript.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BuildingScript.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\BuildingScript.cs",
               "RelativeToolTip": "Assets\\Scripts\\BuildingScript.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAowB0AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwA4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T22:35:45.444Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MineScript.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\MineScript.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MineScript.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\MineScript.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MineScript.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T22:35:30.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Colonymechanics.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\Colonymechanics.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Colonymechanics.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\SpaceColoniser\\Space Colonisation 3D\\Assets\\Scripts\\Colonymechanics.cs",
               "RelativeToolTip": "Assets\\Scripts\\Colonymechanics.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwGkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAABwmZmZmRkmwB0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T20:08:34.838Z",
               "EditorCaption": ""
