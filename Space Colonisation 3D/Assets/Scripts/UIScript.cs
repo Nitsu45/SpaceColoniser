@@ -13,6 +13,7 @@ public class UIScript : MonoBehaviour
     public Text ManPowerDisplay;
     public Text PlanetNameDisplay;
     public Button LaunchRocketButton;
+    public Button PlanetSwitchButton;
 
     public GameObject nextPlanet;
     public GameObject SelectedPlanet;
@@ -45,14 +46,14 @@ public class UIScript : MonoBehaviour
         {
             float mouseX = Input.GetAxisRaw("Mouse X") * 20;
 
-            mainCamera.transform.RotateAround(transform.position, new Vector3(0, mouseX, 0), 20f * Time.deltaTime);
+            mainCamera.transform.RotateAround(SelectedPlanet.transform.position, new Vector3(0, mouseX, 0), 200f * Time.deltaTime);
         }
     }
 
     //Updates the displayed text with the current values of the selected Colony
     void UpdateDisplay()
     {
-        PlanetNameDisplay.text = SelectedColony.planetName;
+        //PlanetNameDisplay.text = SelectedColony.planetName;
         OreProductionDisplay.text = $"Ore Production: {SelectedColony.oreProduction}/m";
         OreDisplay.text = $"Ore: {SelectedColony.planetStorage[0]}";
         EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage[1]}";
@@ -118,18 +119,34 @@ public class UIScript : MonoBehaviour
 
         if (!SelectedColony.hasRocketStation) return;
         nextPlanet.GetComponent<Colonymechanics>().AddingBuildingToColony(ConstructionScript.spacestation);
-        ChangePlanets();
+        ChangePlanets();    
         
 
     }
+    //Method to change the planet the Player is currently playing on
+    //Developersnote: the Camera switches to a constant position
     public void ChangePlanets()
     {
         GameObject Planetbuffer = SelectedPlanet;
+        //reseting camer to standard position
+        mainCamera.transform.rotation = Quaternion.identity;
+        Vector3 standartPosition = new Vector3(0f - mainCamera.transform.position.x, 0, 0);
+        
+        mainCamera.transform.Translate(standartPosition);
+        
+
         SelectedPlanet = nextPlanet;
-        nextPlanet = Planetbuffer;
-        mainCamera.transform.LookAt(SelectedPlanet.transform, new Vector3(0, 0, -10));
+        nextPlanet = Planetbuffer; 
         SelectedColony = SelectedPlanet.GetComponent<Colonymechanics>();
         ConstructionScript = GetComponent<ConstructionMechanics>();
+        PlanetNameDisplay.text = SelectedPlanet.name;
+
+        //Moving Camera to the next planet
+        
+        Vector3 difference = new Vector3(SelectedPlanet.transform.position.x - mainCamera.transform.position.x, SelectedPlanet.transform.position.y - mainCamera.transform.position.y, SelectedPlanet.transform.position.z - 3.5f - mainCamera.transform.position.z);
+        mainCamera.transform.Translate(difference);
+        //mainCamera.transform.LookAt(SelectedPlanet.transform);
+
 
     }
 
