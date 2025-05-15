@@ -359,6 +359,7 @@
 "Assets/Scripts/MineScript.cs"
 "Assets/Scripts/PlanetScript.cs"
 "Assets/Scripts/PowerPlantScript.cs"
+"Assets/Scripts/PurchaseGrid.cs"
 "Assets/Scripts/RocketStation.cs"
 "Assets/Scripts/SpaceStationScript.cs"
 "Assets/Scripts/UIScript.cs"
