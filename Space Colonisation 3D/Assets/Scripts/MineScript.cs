@@ -9,8 +9,8 @@ public class MineScript : BuildingScript
     {
         Name = "mine";
         oreProduction = 50;
-        OreCost = 200;
-        EnergyCost = 50;
+        oreCost = 200;
+        energyCost = 50;
         manPowerCost = 10;
     }
      
