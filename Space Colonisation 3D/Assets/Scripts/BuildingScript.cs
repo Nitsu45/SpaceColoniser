@@ -7,9 +7,9 @@ public class BuildingScript : MonoBehaviour
     //Building Name
     public string Name = "";
     //Build costs
-    public int oreCost = 0;
-    public int energyCost = 0; //energy is a constant cost, meaning it doesn't get substracted one time during construction, but instead occupys this amount of energy as long as it exists
-    public int manPowerCost = 0; //manpower is a constant cost, meaning it doesn't get substracted one time during construction, but instead occupys this amount of energy as long as it exists
+    public int OreCost = 0;
+    public int EnergyCost = 0;
+    public int manPowerCost = 0;
     //Resource generation
     public int oreProduction = 0;
     public int energyProduction = 0;
@@ -31,12 +31,9 @@ public class BuildingScript : MonoBehaviour
     //function for getting the construction cost
     public int[] GetConstructionCosts()
     {
-        return new int[] { oreCost, energyCost, manPowerCost };
+        return new int[] { OreCost, EnergyCost, manPowerCost };
     }
-    public int[] GetResourceProduction()
-    {
-        return new int[] { oreProduction, energyProduction, manpower };
-    }
+
 
 
 
