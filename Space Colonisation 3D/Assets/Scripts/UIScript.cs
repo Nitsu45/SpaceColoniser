@@ -11,7 +11,11 @@ public class UIScript : MonoBehaviour
     public Text OreDisplay;
     public Text EnergyProductionDisplay;
     public Text ManPowerDisplay;
+    public Text PlanetNameDisplay;
+    public Button LaunchRocketButton;
+    public Button PlanetSwitchButton;
 
+    public GameObject nextPlanet;
     public GameObject SelectedPlanet;
 
     Colonymechanics SelectedColony;
@@ -23,13 +27,17 @@ public class UIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         SelectedColony = SelectedPlanet.GetComponent<Colonymechanics>();
         ConstructionScript = GetComponent<ConstructionMechanics>();
+        //Getting starter resources on the first Planet
+        SelectedColony.getStarterResources();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         UpdateDisplay();
         lookAroundPlanet();
     }
@@ -41,40 +49,108 @@ public class UIScript : MonoBehaviour
         {
             float mouseX = Input.GetAxisRaw("Mouse X") * 20;
 
-            mainCamera.transform.RotateAround(transform.position, new Vector3(0, mouseX, 0), 200f * Time.deltaTime);
+            mainCamera.transform.RotateAround(SelectedPlanet.transform.position, new Vector3(0, mouseX, 0), 200f * Time.deltaTime);
         }
     }
 
     //Updates the displayed text with the current values of the selected Colony
     void UpdateDisplay()
     {
+        //PlanetNameDisplay.text = SelectedColony.planetName;
         OreProductionDisplay.text = $"Ore Production: {SelectedColony.oreProduction}/m";
         OreDisplay.text = $"Ore: {SelectedColony.planetStorage[0]}";
         EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage[1]}";
         ManPowerDisplay.text = $"Man Power:  {SelectedColony.planetStorage[2]}";
+        
     }
 
     //Button functions
     //Button that allows you to buy a mine (temporary feature)
     public void BuyMineButton()
     {
-        //The 
-        if (ConstructionScript.ConstructingBuilding("mine", SelectedColony.planetStorage))
+        // Calling the ConstructBuilding function and pass the planet inventory and the building type
+        //If there are enough resources the player can place the building and the cost ist subtracted from the inventory
+        //if not it generates an error message
+        string buildingToAdd = "mine";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
         {
-            SelectedColony.AddingBuildingToColony("mine");
-            SelectedColony.planetStorage = ConstructionScript.SubstractingConstrctuionCosts("mine", SelectedColony.planetStorage);
+            
         }
         else Debug.Log("Building could not be constructed");
     }
     //Button that allows you to buy a powerplant (temporary feature)
     public void BuyPPButton()
     {
-        //Inactive
+        string buildingToAdd = "powerplant";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
+        {
+           
+        }
+        else Debug.Log("Building could not be constructed");
     }
     //Button that allows you to buy a house (temporary feature)
     public void BuyHouseButton()
     {
-        //Inactive
+        string buildingToAdd = "house";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
+        {
+            
+        }
     }
+    //Button that allows you to buy a Rocket Station (temporary feature)
+    public void BuyRocketStationButton()
+    {
+        string buildingToAdd = "rocketstation";
+        if (ConstructionScript.ConstructingBuilding(buildingToAdd, SelectedColony))
+        {
+            
+        }
+    }
+    //Button that allows you to buy a Space Station (temporary feature)
+    public void BuySpaceStationButton()
+    {
+        //Check if a rocket Station exists on the planet
+        //THen allow the player to build a Space Sation on the next planet
+    }
+    //Here should be a button opening the rocket station menu when the building is selected
+    public void LaunchRocketButtonFunction()
+    {
+        // The player should be able to select a planet to shoot the rocket to, but for development purposes it's just one other planet that get's choosen automatically
+        //This button can be pressed as often as one wants, this will be fixed later with a method checking for a designated building in the colonys buildings list
+
+        if (!SelectedColony.hasRocketStation) return;
+        nextPlanet.GetComponent<Colonymechanics>().AddingBuildingToColony(ConstructionScript.spacestation);
+        nextPlanet.GetComponent<Colonymechanics>().planetStorage[0] = 400;
+        ChangePlanets();    
+        
+
+    }
+    //Method to change the planet the Player is currently playing on
+    //Developersnote: the Camera switches to a constant position
+    public void ChangePlanets()
+    {
+        GameObject Planetbuffer = SelectedPlanet;
+        //reseting camer to standard position
+        mainCamera.transform.rotation = Quaternion.identity;
+        Vector3 standardPosition = new Vector3(0f - mainCamera.transform.position.x, 0, 0);
+        
+        mainCamera.transform.Translate(standardPosition);
+        
+
+        SelectedPlanet = nextPlanet;
+        nextPlanet = Planetbuffer; 
+        SelectedColony = SelectedPlanet.GetComponent<Colonymechanics>();
+        ConstructionScript = GetComponent<ConstructionMechanics>();
+        PlanetNameDisplay.text = SelectedPlanet.name;
+
+        //Moving Camera to the next planet
+        
+        Vector3 difference = new Vector3(SelectedPlanet.transform.position.x - mainCamera.transform.position.x, SelectedPlanet.transform.position.y - mainCamera.transform.position.y, SelectedPlanet.transform.position.z - 3.5f - mainCamera.transform.position.z);
+        mainCamera.transform.Translate(difference);
+        //mainCamera.transform.LookAt(SelectedPlanet.transform);
+
+
+    }
+
 
 }
