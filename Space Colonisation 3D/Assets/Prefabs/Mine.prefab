@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: mine
-  OreCost: 200
-  EnergyCost: 50
+  oreCost: 200
+  energyCost: 50
   manPowerCost: 10
   oreProduction: 50
   energyProduction: 0

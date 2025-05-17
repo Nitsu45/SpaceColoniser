@@ -48,7 +48,7 @@ public class ConstructionMechanics : MonoBehaviour
 
     public bool ConstructingBuilding(string buildingName, Colonymechanics SelectedColony )
     {
-        GameObject ConstructedBuilding = GettingBuildingByName(buildingName);
+        GameObject ConstructedBuilding = GetBuildingByName(buildingName);
         BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
         if(CheckingConstructionCosts(ConstructedBuildingProperties.GetConstructionCosts(),SelectedColony.planetStorage))
         {
@@ -77,7 +77,7 @@ public class ConstructionMechanics : MonoBehaviour
     //Substracting the resources from the colony after the building has succesfully been placed.
     public int[] SubstractingConstructionCosts(string buildingName, int[] planetInventory)
     {
-        GameObject ConstructedBuilding = GettingBuildingByName(buildingName);
+        GameObject ConstructedBuilding = GetBuildingByName(buildingName);
         BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
         int[] ConstructionCosts = ConstructedBuildingProperties.GetConstructionCosts();
 
@@ -91,7 +91,7 @@ public class ConstructionMechanics : MonoBehaviour
 
     //Gets the respective Gameobject by the name of it. This is to not have countless references to them in all of the scripts.
     //This way all of the references are in one place and you can get them by using a simple string.
-    public GameObject GettingBuildingByName(string buildingName)
+    public GameObject GetBuildingByName(string buildingName)
     {
         switch (buildingName)
         {

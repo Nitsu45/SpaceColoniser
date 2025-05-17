@@ -11,6 +11,7 @@ public class PurchaseGrid : MonoBehaviour
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject PurchasePopOut;
 
+    public GameObject UIScript;
     GameObject instantiatedPopoutWindow;
 
     Vector3 costOreEnergyManpower = new Vector3(1, 2, 3);
@@ -39,28 +40,40 @@ public class PurchaseGrid : MonoBehaviour
 
     void getCostAndProduction(string buttonName)
     {
+        string buildingType = "";
         //Checks which button matches the name of the "buttonName" which is inputed manually in the Event Trigger component on the buttons, and sets the variables "buttonCost" and "buttonProduction" to their new values which are then used when displaying the popout window.
+        ConstructionMechanics CM = UIScript.GetComponent<ConstructionMechanics>();
+        CM.GetBuildingByName(buttonName);
+
         switch (buttonName)
         {
             case "BuyMine":
-                buttonCost = new Vector3(200, 50, 10); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buildingType = "mine";
                 break;
-            
+
             case "BuyHouse":
-                buttonCost = new Vector3(200, 50, 0); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buildingType = "house";
                 break;
 
             case "BuyRocketstation":
-                buttonCost = new Vector3(1000, 500, 500); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buildingType = "rocketstation";
                 break;
 
             case "BuyPowerplant":
-                buttonCost = new Vector3(200, 0, 10); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buildingType = "powerplant";
                 break;
+            default:
+                return;
         }
+
+        GameObject Building = CM.GetBuildingByName(buildingType);
+        
+        int[] costs = Building.GetComponent<BuildingScript>().GetConstructionCosts();
+        int[] production = Building.GetComponent<BuildingScript>().GetResourceProduction();
+
+        buttonCost = new Vector3(costs[0], costs[1], costs[2]); //COST (ORE, ENERGY, MANPOWER)
+        buttonProduction = new Vector3(production[0], production[1], production[2]); //PRODUCTION (ORE, ENERGY, MANPOWER)
+        //Destroy(Building);
+
     }
 }
