@@ -9,7 +9,7 @@ public class RocketStation : BuildingScript
         Name = "rocket station";
         oreCost = 1000;
         energyCost = 500;
-        manPowerCost = 500;
+        manPowerAssigned = 500;
     }
     
     // Start is called before the first frame update

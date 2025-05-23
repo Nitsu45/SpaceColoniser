@@ -10,7 +10,7 @@ public class HouseScript : BuildingScript
         manpower = 100;
         oreCost = 200;
         energyCost = 50;
-        manPowerCost = 0;
+        manPowerAssigned = 0;
     }
     // Start is called before the first frame update
     void Start()

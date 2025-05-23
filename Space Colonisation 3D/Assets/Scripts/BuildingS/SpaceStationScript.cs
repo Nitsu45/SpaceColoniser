@@ -11,7 +11,7 @@ public class SpaceStationScript : BuildingScript
         manpower = 100;
         oreCost = 1000;
         energyCost = 0;
-        manPowerCost = 0;
+        manPowerAssigned = 0;
     }
     // Start is called before the first frame update
     void Start()

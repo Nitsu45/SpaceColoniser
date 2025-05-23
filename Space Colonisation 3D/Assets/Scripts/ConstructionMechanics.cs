@@ -13,9 +13,7 @@ public class ConstructionMechanics : MonoBehaviour
     public GameObject spacestation;
     public GameObject rocketstation;
 
-
-
-
+    
     GameObject[] ListOfBuildings;
     
 
@@ -53,10 +51,9 @@ public class ConstructionMechanics : MonoBehaviour
         if(CheckingConstructionCosts(ConstructedBuildingProperties.GetConstructionCosts(),SelectedColony.planetStorage))
         {
             //Need to add a function that allows for the cancelation of a building during placement
-            StartCoroutine(buildingPlacement(ConstructedBuilding));
+            StartCoroutine(buildingPlacement(ConstructedBuilding, SelectedColony));
             //if the building coroutine succeeds, the building class should then call the add building function of the colony mechanics class
-            SelectedColony.AddingBuildingToColony(ConstructedBuilding);
-            SelectedColony.planetStorage = SubstractingConstructionCosts(buildingName, SelectedColony.planetStorage);
+            
             if (buildingName == "rocketstation") SelectedColony.hasRocketStation = true;
            
             return true;
@@ -69,20 +66,28 @@ public class ConstructionMechanics : MonoBehaviour
     {
         for (int i = 0; i < costs.Length; i++)
         {
+            if(availableResources.Length <= i )
+            {
+                Debug.Log("available resource out of bounds, index: " + i);
+                break;
+            }
             if (costs[i] > availableResources[i]) return false;
         }
 
         return true;
     }
     //Substracting the resources from the colony after the building has succesfully been placed.
-    public int[] SubstractingConstructionCosts(string buildingName, int[] planetInventory)
+    public int[] SubstractingConstructionCosts(GameObject building, int[] planetInventory)
     {
-        GameObject ConstructedBuilding = GetBuildingByName(buildingName);
-        BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
+        BuildingScript ConstructedBuildingProperties = building.GetComponent<BuildingScript>();
         int[] ConstructionCosts = ConstructedBuildingProperties.GetConstructionCosts();
 
         for (int i = 0; i < ConstructionCosts.Length; i++)
         {
+            if (planetInventory.Length <= i)
+            {
+                break;
+            }
             planetInventory[i] = planetInventory[i] - ConstructionCosts[i];
 
         }
@@ -118,9 +123,15 @@ public class ConstructionMechanics : MonoBehaviour
         ListOfBuildings = GameObject.FindGameObjectsWithTag("Buildings");
     }
 
+    void AbortConstruction()
+    {
+
+
+    }
+
 
     //Placing a building
-    IEnumerator buildingPlacement(GameObject building)
+    IEnumerator buildingPlacement(GameObject building, Colonymechanics SelectedColony)
     {
         GameObject placedBuilding = Instantiate(building);
         while (true)
@@ -138,6 +149,15 @@ public class ConstructionMechanics : MonoBehaviour
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
                     placedBuilding.AddComponent<BoxCollider>();
+
+                    SelectedColony.AddingBuildingToColony(building);
+                    SelectedColony.planetStorage = SubstractingConstructionCosts(building, SelectedColony.planetStorage);
+
+                    yield break;
+                }
+                if(Input.GetKey(KeyCode.Escape))
+                {
+                    Destroy(placedBuilding);
                     yield break;
                 }
             }

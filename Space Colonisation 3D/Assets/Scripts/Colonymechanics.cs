@@ -22,7 +22,7 @@ public class Colonymechanics : MonoBehaviour
     public string planetName;
     public bool hasRocketStation = false;
 
-    public int[] planetStorage = new int[3] { 0, 0, 0 };
+    public int[] planetStorage = new int[9] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     List<GameObject> colonyBuildingsList = new List<GameObject>();
 
     // Start is called before the first frame update

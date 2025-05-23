@@ -10,7 +10,7 @@ public class PowerPlantScript : BuildingScript
         energyProduction = 100;
         oreCost = 200;
         energyCost = 0;
-        manPowerCost = 10;
+        manPowerAssigned = 10;
         
     }
 

@@ -11,7 +11,7 @@ public class MineScript : BuildingScript
         oreProduction = 50;
         oreCost = 200;
         energyCost = 50;
-        manPowerCost = 10;
+        manPowerAssigned = 10;
     }
      
     //Build costs
