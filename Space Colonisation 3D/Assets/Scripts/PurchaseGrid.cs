@@ -1,21 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PurchaseGrid : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
+    [SerializeField] GameObject BuyButton;
     [SerializeField] GameObject PurchasePopOut;
+
+    RectTransform rectTransform;
 
     GameObject instantiatedPopoutWindow;
 
     Vector3 costOreEnergyManpower = new Vector3(1, 2, 3);
     Vector3 buttonCost;
     Vector3 buttonProduction;
+
+    int generatedButtonAmount = 0;
+
+    void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        
+        generateButtons();
+    }
+
     public void mouseHoverOverButton(string buttonName)
     {
         //Creates the popout window that shows the details of the building you're about to purchase.
@@ -35,6 +52,60 @@ public class PurchaseGrid : MonoBehaviour
     {
         //Removes the popout window.
         Destroy(instantiatedPopoutWindow);
+    }
+
+    void generateButtons()
+    {
+        //Generates the buttons.
+        generateButton("BuyMine");
+        generateButton("BuyHouse");
+        generateButton("BuyPowerplant");
+        generateButton("BuyRocketstation");
+    }
+
+    void generateButton(string buildingName)
+    {
+        generatedButtonAmount += 1;
+
+        //Addss the button prefab to the scene.
+        GameObject buttonInstance = Instantiate(BuyButton);
+        buttonInstance.transform.SetParent(this.transform);
+        buttonInstance.name = buildingName;
+        buttonInstance.GetComponentInChildren<TextMeshProUGUI>().text = buildingName;
+
+        EventTrigger eventTrigger = buttonInstance.GetComponent<EventTrigger>();
+
+        //Adds the event entries.
+        EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerEnter
+        };
+        EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerExit
+        };
+
+        //Connects the event entries to the proper methods/functions.
+        pointerEnterEntry.callback.AddListener((eventData) =>
+        {
+            mouseHoverOverButton(buildingName);
+        });
+        pointerExitEntry.callback.AddListener((eventData) =>
+        {
+            mouseHoverExit();
+        });
+
+        eventTrigger.triggers.Add(pointerEnterEntry);
+        eventTrigger.triggers.Add(pointerExitEntry);
+        
+        if (generatedButtonAmount > 4)
+        {
+            //Extends the scrollable menu.
+            rectTransform.pivot = new Vector2(0f, rectTransform.pivot.y);
+            Vector2 xSize = rectTransform.sizeDelta;
+            xSize.x += 185;
+            rectTransform.sizeDelta = xSize;
+        }
     }
 
     void getCostAndProduction(string buttonName)

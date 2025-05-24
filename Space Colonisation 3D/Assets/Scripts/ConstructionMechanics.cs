@@ -113,9 +113,9 @@ public class ConstructionMechanics : MonoBehaviour
 
     //Listing all Gameobjects with the "Buildings"-tag and saving it in an Array
     //No function yet
-    void CreateListOfBuildings()
+    GameObject[] CreateListOfBuildings()
     {
-        ListOfBuildings = GameObject.FindGameObjectsWithTag("Buildings");
+        return new GameObject[0];
     }
 
 
