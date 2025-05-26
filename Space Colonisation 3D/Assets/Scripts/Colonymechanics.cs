@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ public class Colonymechanics : MonoBehaviour
     public string planetName;
     public bool hasRocketStation = false;
 
-    public int[] planetStorage = new int[9] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public Inventory planetStorage;
     List<GameObject> colonyBuildingsList = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class Colonymechanics : MonoBehaviour
         ConstructionScript = UIScript.GetComponent<ConstructionMechanics>();
         //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
         if (planetName == null) planetName = "";
-        
+        planetStorage = new Inventory(new Resource().ResourceNamePosition);
         //Checking already existing Buildings
         checkBuildingsList();
         //the routine to update the resources
@@ -99,9 +100,9 @@ public class Colonymechanics : MonoBehaviour
     {
         while (true)
         {
-            planetStorage[0] = planetStorage[0] + oreProduction;
-            planetStorage[1] = energyProduction - energyConsumption;
-            planetStorage[2] = manpower - manpowerConsumption;
+            planetStorage.AddToInventory("ore",oreProduction);
+            planetStorage.AddToInventory("energy",energyConsumption);
+            planetStorage.AddToInventory("manPower",manpowerConsumption);
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }
@@ -118,7 +119,7 @@ public class Colonymechanics : MonoBehaviour
     public void getStarterResources()
     {
         //Adding starter resources 
-        planetStorage[0] = 400;
+        planetStorage.AddToInventory("ore",400);
         AddingBuildingToColony(Instantiate(ConstructionScript.spacestation));
     }
 

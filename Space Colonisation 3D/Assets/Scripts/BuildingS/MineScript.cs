@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MineScript : BuildingScript
 {
-    //Building Name
+    //Building name
     public MineScript()
     {
-        Name = "mine";
+        name = "mine";
         oreProduction = 50;
         oreCost = 200;
         energyCost = 50;

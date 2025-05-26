@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class ConstructionMechanics : MonoBehaviour
     public GameObject spacestation;
     public GameObject rocketstation;
 
-    
+    public GameObject[] Tech1Buildings = new GameObject[9];
     GameObject[] ListOfBuildings;
     
 
@@ -48,7 +49,7 @@ public class ConstructionMechanics : MonoBehaviour
     {
         GameObject ConstructedBuilding = GetBuildingByName(buildingName);
         BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
-        if(CheckingConstructionCosts(ConstructedBuildingProperties.GetConstructionCosts(),SelectedColony.planetStorage))
+        if(CheckingConstructionCosts(ConstructedBuildingProperties.Costs,SelectedColony.planetStorage))
         {
             //Need to add a function that allows for the cancelation of a building during placement
             StartCoroutine(buildingPlacement(ConstructedBuilding, SelectedColony));
@@ -62,36 +63,26 @@ public class ConstructionMechanics : MonoBehaviour
 
     }
     //Checking if enough resources are available for construction
-    public bool CheckingConstructionCosts(int[] costs, int[] availableResources)
+    public bool CheckingConstructionCosts(Inventory Costs, Inventory planetstorage)
     {
-        for (int i = 0; i < costs.Length; i++)
+        string[] resourceName = Costs.ResourcesStoredInInventory();
+        for (int i = 0; i < resourceName.Length; i++)
         {
-            if(availableResources.Length <= i )
-            {
-                Debug.Log("available resource out of bounds, index: " + i);
-                break;
-            }
-            if (costs[i] > availableResources[i]) return false;
+
+            if (Costs.GetResourceAmount(resourceName[i]) > planetstorage.GetResourceAmount(resourceName[i])) return false;
+
         }
 
         return true;
     }
     //Substracting the resources from the colony after the building has succesfully been placed.
-    public int[] SubstractingConstructionCosts(GameObject building, int[] planetInventory)
+    public void SubstractingConstructionCosts(Inventory Costs, Inventory planetstorage)
     {
-        BuildingScript ConstructedBuildingProperties = building.GetComponent<BuildingScript>();
-        int[] ConstructionCosts = ConstructedBuildingProperties.GetConstructionCosts();
-
-        for (int i = 0; i < ConstructionCosts.Length; i++)
+        string[] resourceName = Costs.ResourcesStoredInInventory();
+        for (int i = 0; i < resourceName.Length; i++)
         {
-            if (planetInventory.Length <= i)
-            {
-                break;
-            }
-            planetInventory[i] = planetInventory[i] - ConstructionCosts[i];
-
+            planetstorage.SubstracFromInventory(resourceName[i], Costs.GetResourceAmount(resourceName[i]));
         }
-        return planetInventory;
     }
 
     //Gets the respective Gameobject by the name of it. This is to not have countless references to them in all of the scripts.
@@ -134,6 +125,7 @@ public class ConstructionMechanics : MonoBehaviour
     IEnumerator buildingPlacement(GameObject building, Colonymechanics SelectedColony)
     {
         GameObject placedBuilding = Instantiate(building);
+        BuildingScript buildingScript = building.GetComponent<BuildingScript>();
         while (true)
         {
             //Loops until player has chosen the position of the building.
@@ -151,7 +143,7 @@ public class ConstructionMechanics : MonoBehaviour
                     placedBuilding.AddComponent<BoxCollider>();
 
                     SelectedColony.AddingBuildingToColony(building);
-                    SelectedColony.planetStorage = SubstractingConstructionCosts(building, SelectedColony.planetStorage);
+                    SubstractingConstructionCosts(buildingScript.Costs, SelectedColony.planetStorage);
 
                     yield break;
                 }

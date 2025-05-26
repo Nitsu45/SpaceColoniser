@@ -58,9 +58,9 @@ public class UIScript : MonoBehaviour
     {
         //PlanetNameDisplay.text = SelectedColony.planetName;
         OreProductionDisplay.text = $"Ore Production: {SelectedColony.oreProduction}/m";
-        OreDisplay.text = $"Ore: {SelectedColony.planetStorage[0]}";
-        EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage[1]}";
-        ManPowerDisplay.text = $"Man Power:  {SelectedColony.planetStorage[2]}";
+        OreDisplay.text = $"Ore: {SelectedColony.planetStorage.GetResourceAmount("ore")}";
+        EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage.GetResourceAmount("energy")}";
+        ManPowerDisplay.text = $"Man Power:  {SelectedColony.planetStorage.GetResourceAmount("manpower")}";
         
     }
 
@@ -117,10 +117,10 @@ public class UIScript : MonoBehaviour
     {
         // The player should be able to select a planet to shoot the rocket to, but for development purposes it's just one other planet that get's choosen automatically
         //This button can be pressed as often as one wants, this will be fixed later with a method checking for a designated building in the colonys buildings list
-
+        
         if (!SelectedColony.hasRocketStation) return;
         nextPlanet.GetComponent<Colonymechanics>().AddingBuildingToColony(ConstructionScript.spacestation);
-        nextPlanet.GetComponent<Colonymechanics>().planetStorage[0] = 400;
+        nextPlanet.GetComponent<Colonymechanics>().planetStorage.AddToInventory("ore", 400);
         ChangePlanets();    
         
 
