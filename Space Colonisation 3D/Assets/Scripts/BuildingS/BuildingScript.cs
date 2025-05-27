@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BuildingScript : MonoBehaviour
 {
-    //Building name
-    public string name = "";
+    //Building BuildingName
+    public string BuildingName = "";
     //manpower mechanics
     public int manPowerAssigned = 0; //manpower can be assigned to the building. It needs a minium of people assigned to operate
     public int maxManpower = 0; // the maximum amount of manpower
@@ -71,7 +71,7 @@ public class BuildingScript : MonoBehaviour
         return new int[] { oreProduction, rareEarths, coal, uranium, water, energyProduction, researchPoints, manpower, food, maschineparts, specialtools};
     }
 
-    public void fillingInventory(Inventory InventoryToFillUp, int[] amount, string[] resourceNames)
+    private void fillingInventory(Inventory InventoryToFillUp, int[] amount, string[] resourceNames)
     {
         for (int i = 0; i < resourceNames.Length; i++)
         {

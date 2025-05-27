@@ -6,7 +6,7 @@ namespace Assets.Scripts
     public class Inventory 
     {
         string[] resourceIDs;
-        int[] resourceCounter; //The counter holds the amount of resource in the field with the same position as the respective Resources name in resource IDs (i.e. if ore is on position 0 in resources IDs the amount of ore is also saved in 0 in resourceCounter)
+        int[] resourceCounter; //The counter holds the amount of resource in the field with the same position as the respective Resources BuildingName in resource IDs (i.e. if ore is on position 0 in resources IDs the amount of ore is also saved in 0 in resourceCounter)
         //The Inventory gives the ability to create a custom Resource Inventory with either all or part of the Resources available in the game 
         public Inventory(string[]resourceNames)
         {
@@ -43,7 +43,8 @@ namespace Assets.Scripts
 
         }
 
-        public int[] ContentsOfInventory(string[] resourceNames)
+        //Gives back the position in the Inventory array of the resources in the parameter
+        public int[] ArryPositionInInventory(string[] resourceNames)
         {
             bool resourceExist;
             int[] positionOfNames = new int[resourceNames.Length];
@@ -92,6 +93,10 @@ namespace Assets.Scripts
                 }
             }
             return false;
+        }
+        public int GetLenghtOfInventory()
+        { 
+            return resourceIDs.Length; 
         }
 
     }

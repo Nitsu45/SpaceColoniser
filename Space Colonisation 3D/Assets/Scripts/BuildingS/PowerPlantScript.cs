@@ -6,7 +6,7 @@ public class PowerPlantScript : BuildingScript
 {
     public PowerPlantScript()
     {
-        name = "powerplant";
+        BuildingName = "powerplant";
         energyProduction = 100;
         oreCost = 200;
         energyCost = 0;

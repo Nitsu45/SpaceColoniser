@@ -7,7 +7,7 @@ public class WaterWorks : BuildingScript
 
     public WaterWorks() 
     {
-        name = "waterworks";
+        BuildingName = "waterworks";
         oreCost = 200;
         energyCost = 50;
         maxManpower = 10;

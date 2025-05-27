@@ -40,8 +40,8 @@ public class ConstructionMechanics : MonoBehaviour
 
     //Constructing a building
     /*
-     The function looks complicated but it essentially just checks what Gameobject is referenced by the name that is passed as a string.
-     Then it get's the script of that Gameobject and calls the "GetConstructionCosts" function of that script. As the name suggest this get's the costs of constructing the building.
+     The function looks complicated but it essentially just checks what Gameobject is referenced by the BuildingName that is passed as a string.
+     Then it get's the script of that Gameobject and calls the "GetConstructionCosts" function of that script. As the BuildingName suggest this get's the costs of constructing the building.
      When the Colony has enough resources, these are saved in the planetInventory array, then the function returns true and the player get's to place the building.
      */
 
@@ -85,7 +85,7 @@ public class ConstructionMechanics : MonoBehaviour
         }
     }
 
-    //Gets the respective Gameobject by the name of it. This is to not have countless references to them in all of the scripts.
+    //Gets the respective Gameobject by the BuildingName of it. This is to not have countless references to them in all of the scripts.
     //This way all of the references are in one place and you can get them by using a simple string.
     public GameObject GetBuildingByName(string buildingName)
     {

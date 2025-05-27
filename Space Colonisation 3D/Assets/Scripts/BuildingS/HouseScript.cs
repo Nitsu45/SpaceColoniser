@@ -6,7 +6,7 @@ public class HouseScript : BuildingScript
 {
     public HouseScript()
     {
-        name = "house";
+        BuildingName = "house";
         manpower = 100;
         oreCost = 200;
         energyCost = 50;

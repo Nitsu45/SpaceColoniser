@@ -6,7 +6,7 @@ public class SpaceStationScript : BuildingScript
 {
     public SpaceStationScript()
     {
-        name = "spacestation";
+        BuildingName = "spacestation";
         energyProduction = 100;
         manpower = 100;
         oreCost = 1000;

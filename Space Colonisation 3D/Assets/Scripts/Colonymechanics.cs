@@ -24,6 +24,8 @@ public class Colonymechanics : MonoBehaviour
     public bool hasRocketStation = false;
 
     public Inventory planetStorage;
+    public Inventory planetProduction;
+    public Inventory planetConsumption;
     List<GameObject> colonyBuildingsList = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -33,6 +35,8 @@ public class Colonymechanics : MonoBehaviour
         //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
         if (planetName == null) planetName = "";
         planetStorage = new Inventory(new Resource().ResourceNamePosition);
+        planetProduction = new Inventory(new Resource().ResourceNamePosition);
+        planetConsumption = new Inventory(new Resource().ResourceNamePosition);
         //Checking already existing Buildings
         checkBuildingsList();
         //the routine to update the resources
@@ -42,43 +46,58 @@ public class Colonymechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkBuildingsList();
+        //checkBuildingsList();
         
     }
-    //Check buildings list and adjust resource production
     void checkBuildingsList()
     {
-        int[] temporaryProductionCounter = new int[3]; // Array gets initialised later in code because we need to get the lenght of resource array first 
-        int[] temporaryConsumptionCounter = new int[3]; // Array gets initialised later in code because we need to get the lenght of resource array first 
+        //Zuerst zusammenzählen aller Resourcen Produktion
+        //Dann abziehen der Verbrauchs
 
-        // They first count how many resources the colony produces before assigning the value
-        foreach (var item in colonyBuildingsList)
+        foreach (GameObject go in colonyBuildingsList)
         {
-            //Funktion zum zählen aller einzelnen Einträge des jeweiligen Gebäude Types.
-            BuildingScript ConstructedBuildingProperties = item.GetComponent<BuildingScript>();
-            int[] resourceProduction = ConstructedBuildingProperties.GetResourceProduction();
-            int[] resourceConsumption = ConstructedBuildingProperties.GetConstructionCosts();
+            Inventory ResourceProduction = go.GetComponent<BuildingScript>().Production;
 
-
-            for (int i = 0; i < temporaryProductionCounter.Length; i++)
-            {
-                temporaryProductionCounter[i] = temporaryProductionCounter[i] + resourceProduction[i];
-            }
-            for (int i = 0; i < temporaryConsumptionCounter.Length; i++)
-            {
-                temporaryConsumptionCounter[i] = temporaryConsumptionCounter[i] + resourceConsumption[i];
-            }
         }
-        //assigning the planetary values with the result from counting the buildings production and consumption together
-        oreProduction = temporaryProductionCounter[0];
-        energyProduction = temporaryProductionCounter[1];
-        manpower = temporaryProductionCounter[2];
-        energyConsumption = temporaryConsumptionCounter[1];
-        manpowerConsumption = temporaryConsumptionCounter[2];
 
 
     }
-   
+
+
+    //Check buildings list and adjust resource production
+    /*  void checkBuildingsList()
+      {
+          int[] temporaryProductionCounter = new int[planetStorage.GetLenghtOfInventory()]; // Array gets initialised later in code because we need to get the lenght of resource array first 
+          int[] temporaryConsumptionCounter = new int[planetStorage.GetLenghtOfInventory()]; // Array gets initialised later in code because we need to get the lenght of resource array first 
+
+          // They first count how many resources the colony produces before assigning the value
+          foreach (var item in colonyBuildingsList)
+          {
+              //Funktion zum zählen aller einzelnen Einträge des jeweiligen Gebäude Types.
+              BuildingScript ConstructedBuildingProperties = item.GetComponent<BuildingScript>();
+              int[] resourceProduction = ConstructedBuildingProperties.GetResourceProduction();
+              int[] resourceConsumption = ConstructedBuildingProperties.GetConstructionCosts();
+
+
+              for (int i = 0; i < temporaryProductionCounter.Length; i++)
+              {
+                  temporaryProductionCounter[i] = temporaryProductionCounter[i] + resourceProduction[i];
+              }
+              for (int i = 0; i < temporaryConsumptionCounter.Length; i++)
+              {
+                  temporaryConsumptionCounter[i] = temporaryConsumptionCounter[i] + resourceConsumption[i];
+              }
+          }
+          //assigning the planetary values with the result from counting the buildings production and consumption together
+          oreProduction = temporaryProductionCounter[0];
+          energyProduction = temporaryProductionCounter[1];
+          manpower = temporaryProductionCounter[2];
+          energyConsumption = temporaryConsumptionCounter[1];
+          manpowerConsumption = temporaryConsumptionCounter[2];
+
+
+      }*/
+
 
     //Adding a building to the building-list of that planet
 
@@ -100,9 +119,9 @@ public class Colonymechanics : MonoBehaviour
     {
         while (true)
         {
-            planetStorage.AddToInventory("ore",oreProduction);
-            planetStorage.AddToInventory("energy",energyConsumption);
-            planetStorage.AddToInventory("manPower",manpowerConsumption);
+            if (!planetStorage.AddToInventory("ore", oreProduction)) Debug.Log("Error by adding Resource"); 
+            if(!planetStorage.AddToInventory("energy",energyConsumption)) Debug.Log("Error by adding Resource");
+            if (!planetStorage.AddToInventory("manpower",manpowerConsumption)) Debug.Log("Error by adding Resource");
             yield return new WaitForSecondsRealtime(tickTimer);
         }
     }

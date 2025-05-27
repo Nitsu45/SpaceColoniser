@@ -41,7 +41,7 @@ public class PurchaseGrid : MonoBehaviour
     void getCostAndProduction(string buttonName)
     {
         string buildingType = "";
-        //Checks which button matches the name of the "buttonName" which is inputed manually in the Event Trigger component on the buttons, and sets the variables "buttonCost" and "buttonProduction" to their new values which are then used when displaying the popout window.
+        //Checks which button matches the BuildingName of the "buttonName" which is inputed manually in the Event Trigger component on the buttons, and sets the variables "buttonCost" and "buttonProduction" to their new values which are then used when displaying the popout window.
         ConstructionMechanics CM = UIScript.GetComponent<ConstructionMechanics>();
         CM.GetBuildingByName(buttonName);
 
