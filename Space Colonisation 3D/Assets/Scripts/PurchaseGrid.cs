@@ -15,14 +15,14 @@ public class PurchaseGrid : MonoBehaviour
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject BuyButton;
     [SerializeField] GameObject PurchasePopOut;
-
+    [SerializeField] UIScript uiScript;
     RectTransform rectTransform;
 
     GameObject instantiatedPopoutWindow;
 
-    Vector3 costOreEnergyManpower = new Vector3(1, 2, 3);
     Vector3 buttonCost;
     Vector3 buttonProduction;
+    Action onClickFunction;
 
     int generatedButtonAmount = 0;
 
@@ -69,13 +69,14 @@ public class PurchaseGrid : MonoBehaviour
 
         //Addss the button prefab to the scene.
         GameObject buttonInstance = Instantiate(BuyButton);
+        Button buttonComponent = buttonInstance.GetComponent<Button>();
         buttonInstance.transform.SetParent(this.transform);
         buttonInstance.name = buildingName;
         buttonInstance.GetComponentInChildren<TextMeshProUGUI>().text = buildingName;
 
-        EventTrigger eventTrigger = buttonInstance.GetComponent<EventTrigger>();
-
         //Adds the event entries.
+        EventTrigger eventTrigger = buttonInstance.GetComponent<EventTrigger>();
+        
         EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry
         {
             eventID = EventTriggerType.PointerEnter
@@ -97,7 +98,7 @@ public class PurchaseGrid : MonoBehaviour
 
         eventTrigger.triggers.Add(pointerEnterEntry);
         eventTrigger.triggers.Add(pointerExitEntry);
-        
+
         if (generatedButtonAmount > 4)
         {
             //Extends the scrollable menu.
@@ -106,6 +107,8 @@ public class PurchaseGrid : MonoBehaviour
             xSize.x += 185;
             rectTransform.sizeDelta = xSize;
         }
+
+        buttonComponent.onClick.AddListener(() => onClickFunction?.Invoke());
     }
 
     void getCostAndProduction(string buttonName)
@@ -116,21 +119,25 @@ public class PurchaseGrid : MonoBehaviour
             case "BuyMine":
                 buttonCost = new Vector3(200, 50, 10); //COST (ORE, ENERGY, MANPOWER)
                 buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                onClickFunction = uiScript.BuyMineButton;
                 break;
             
             case "BuyHouse":
                 buttonCost = new Vector3(200, 50, 0); //COST (ORE, ENERGY, MANPOWER)
                 buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                onClickFunction = uiScript.BuyHouseButton;
                 break;
 
             case "BuyRocketstation":
                 buttonCost = new Vector3(1000, 500, 500); //COST (ORE, ENERGY, MANPOWER)
                 buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                onClickFunction = uiScript.BuyRocketStationButton;
                 break;
 
             case "BuyPowerplant":
                 buttonCost = new Vector3(200, 0, 10); //COST (ORE, ENERGY, MANPOWER)
                 buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                onClickFunction = uiScript.BuyPPButton;
                 break;
         }
     }
