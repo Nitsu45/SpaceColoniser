@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,16 @@ public class MineScript : BuildingScript
         BuildingName = "mine";
         oreProduction = 50;
         oreCost = 200;
-        energyCost = 50;
-        manPowerAssigned = 10;
+        energyConsumption = 50;
+        manpowerAssigned = 10;
+
+        //auffüllen der Inventare mit den Eigenschaften des Gebäudetypes
+        // Debug.Log("Filling up Costs");
+        fillingInventory(Costs, GetConstructionCosts(), new Resource().resourceNamePosition);
+        // Debug.Log("Filling up Production");
+        fillingInventory(Production, GetResourceProduction(), new Resource().resourceNamePosition);
+        // Debug.Log("Filling up Consumption");
+        fillingInventory(ConstantResourceConsumption, GetConstantResourceConsumption(), new Resource().resourceNamePosition);
     }
      
     //Build costs

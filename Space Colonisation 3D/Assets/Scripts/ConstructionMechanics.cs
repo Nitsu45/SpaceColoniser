@@ -14,7 +14,7 @@ public class ConstructionMechanics : MonoBehaviour
     public GameObject spacestation;
     public GameObject rocketstation;
 
-    public GameObject[] Tech1Buildings = new GameObject[9];
+    // public GameObject[] Tech1Buildings = new GameObject[9];
     GameObject[] ListOfBuildings;
     
 
@@ -51,9 +51,7 @@ public class ConstructionMechanics : MonoBehaviour
         BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
         if(CheckingConstructionCosts(ConstructedBuildingProperties.Costs,SelectedColony.planetStorage))
         {
-            //Need to add a function that allows for the cancelation of a building during placement
             StartCoroutine(buildingPlacement(ConstructedBuilding, SelectedColony));
-            //if the building coroutine succeeds, the building class should then call the add building function of the colony mechanics class
             
             if (buildingName == "rocketstation") SelectedColony.hasRocketStation = true;
            

@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class Colonymechanics : MonoBehaviour
 {
@@ -23,22 +24,18 @@ public class Colonymechanics : MonoBehaviour
     public string planetName;
     public bool hasRocketStation = false;
 
-    public Inventory planetStorage;
-    public Inventory planetProduction;
-    public Inventory planetConsumption;
+    public Inventory planetStorage = new Inventory(new Resource().resourceNamePosition);
+    public Inventory planetProduction = new Inventory(new Resource().resourceNamePosition);
+    public Inventory planetConsumption = new Inventory(new Resource().resourceNamePosition);
     List<GameObject> colonyBuildingsList = new List<GameObject>();
+
 
     // Start is called before the first frame update
     void Start()
     {
         ConstructionScript = UIScript.GetComponent<ConstructionMechanics>();
-        //Hinzufügen eines Wertes zu planetName falls keiner zugewiesen ist um abstürze zu vermeiden
+        //Adding a value in case non is added manually just to avoid bugs
         if (planetName == null) planetName = "";
-        planetStorage = new Inventory(new Resource().ResourceNamePosition);
-        planetProduction = new Inventory(new Resource().ResourceNamePosition);
-        planetConsumption = new Inventory(new Resource().ResourceNamePosition);
-        //Checking already existing Buildings
-        checkBuildingsList();
         //the routine to update the resources
         StartCoroutine(ResourceUpdate());
     }
@@ -53,12 +50,6 @@ public class Colonymechanics : MonoBehaviour
     {
         //Zuerst zusammenzählen aller Resourcen Produktion
         //Dann abziehen der Verbrauchs
-
-        foreach (GameObject go in colonyBuildingsList)
-        {
-            Inventory ResourceProduction = go.GetComponent<BuildingScript>().Production;
-
-        }
 
 
     }
@@ -101,15 +92,34 @@ public class Colonymechanics : MonoBehaviour
 
     //Adding a building to the building-list of that planet
 
-    public void AddingBuildingToColony(GameObject Building)
+    public void AddingBuildingToColony(GameObject building)
     {
-        colonyBuildingsList.Add(Building);
-        checkBuildingsList();
+        BuildingScript ConstructedBuildingProperties = building.GetComponent<BuildingScript>();
+        string[] BuildingProduction = ConstructedBuildingProperties.Production.ResourcesStoredInInventory();
+        string[] BuildingConsumption = ConstructedBuildingProperties.ConstantResourceConsumption.ResourcesStoredInInventory();
+       
+        //Adding resource production. The loop goes through every resource in the production inventory and adds it and the amount the building produces into the planetary production inventory
+        for (int i = 0; i < BuildingProduction.Length; i++)
+        {
+            // Debug.Log($" Adding {BuildingProduction[i]} to Colony. Amount stored in constructed Building Production Inventory: {ConstructedBuildingProperties.Production.GetResourceAmount(BuildingProduction[i])} ");
+            if(!planetProduction.AddToInventory(BuildingProduction[i], ConstructedBuildingProperties.Production.GetResourceAmount(BuildingProduction[i]))) Debug.Log($"Resource: {BuildingProduction[i]} konnte nicht hinzugefügt werden");
+        }
+        //Adding resource costs The loop goes through every resource in the Consumption inventory and adds it and the amount the building consume into the planetary consumption inventory
+        for (int i = 0; i < BuildingConsumption.Length; i++)
+        {
+            planetConsumption.AddToInventory(BuildingConsumption[i], ConstructedBuildingProperties.ConstantResourceConsumption.GetResourceAmount(BuildingConsumption[i]));
+        } 
+        colonyBuildingsList.Add(building);
+
+
     }
     //Deleting a building from the colony
-    public void DeletingBuildingFromColony(string buildingName)
+    public void DeletingBuildingFromColony(GameObject building)
     {
-        //colonyBuildingsList.Remove(buildingName);
+        //substracting resource production
+
+        //substracting resource costs
+        colonyBuildingsList.Remove(building);
     }
 
 
@@ -119,11 +129,31 @@ public class Colonymechanics : MonoBehaviour
     {
         while (true)
         {
-            if (!planetStorage.AddToInventory("ore", oreProduction)) Debug.Log("Error by adding Resource"); 
-            if(!planetStorage.AddToInventory("energy",energyConsumption)) Debug.Log("Error by adding Resource");
-            if (!planetStorage.AddToInventory("manpower",manpowerConsumption)) Debug.Log("Error by adding Resource");
+            ResourceIncome();
             yield return new WaitForSecondsRealtime(tickTimer);
         }
+    }
+    void ResourceIncome()
+    {
+        //normal resources
+        string[] planetaryResources = planetStorage.ResourcesStoredInInventory();
+        
+        for (int i = 0; i < planetaryResources.Length; i++)
+        {
+            int ResourceProduction = planetProduction.GetResourceAmount(planetaryResources[i]);
+            //Debug.Log($"Produktion von {planetaryResources[i]} beträgt: {ResourceProduction} ");
+            int ResourceConsumption = planetConsumption.GetResourceAmount(planetaryResources[i]);
+            //Debug.Log($"Verbrauch von {planetaryResources[i]} beträgt: {ResourceConsumption} ");
+            if (new Resource().IsResourceStatic(planetaryResources[i]))
+            {
+                if(!planetStorage.SetResourceAmount(planetaryResources[i], ResourceProduction - ResourceConsumption)) Debug.Log("Error by adding Resource");
+            } 
+            else if (!planetStorage.AddToInventory(planetaryResources[i], ResourceProduction - ResourceConsumption)) Debug.Log("Error by adding Resource");
+
+        }
+        //static resources
+        
+
     }
 
     int[] NumerateBuildings()

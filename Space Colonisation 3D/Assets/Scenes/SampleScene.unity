@@ -1248,7 +1248,6 @@ MonoBehaviour:
   tickTimer: 10
   planetName: TestPlanet1
   hasRocketStation: 0
-  planetStorage: 000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &453106012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1437,7 @@ MonoBehaviour:
   mine: {fileID: 258488113}
   powerplant: {fileID: 1057782070}
   house: {fileID: 368263365}
-  spacestation: {fileID: 1931544404}
+  spacestation: {fileID: 1223545636940487557, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
   rocketstation: {fileID: 2014745159}
 --- !u!114 &515919210
 MonoBehaviour:
@@ -1571,16 +1570,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c8c83797171c240a349262a03425f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: waterworks
-  manPowerAssigned: 0
+  BuildingName: waterworks
   maxManpower: 10
-  DependendTechnology: 
-  BuildingHealth: 100
+  dependendTechnology: 
+  buildingHealth: 100
   oreCost: 200
   energyCost: 50
   coalCost: 0
-  UraniumCost: 0
+  uraniumCost: 0
   waterCost: 0
+  researchPointsCosts: 0
   foodCost: 0
   maschinepartsCost: 0
   specialtoolsCost: 0
@@ -1589,13 +1588,24 @@ MonoBehaviour:
   energyProduction: 0
   manpower: 100
   coal: 0
-  Uranium: 0
+  uranium: 0
   water: 0
-  ResearchP: 0
+  researchPoints: 0
   food: 0
   maschineparts: 0
   specialtools: 0
   rareEarths: 0
+  oreConsumption: 0
+  EnergyConsumption: 0
+  manpowerAssigned: 0
+  coalConsumption: 0
+  uraniumConsumption: 0
+  waterConsumption: 0
+  researchPointsConsumption: 0
+  foodConsumption: 0
+  maschinepartsConsumption: 0
+  specialtoolsConsumption: 0
+  rareEarthsConsumption: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,7 +2427,6 @@ MonoBehaviour:
   tickTimer: 10
   planetName: TestPlanet2
   hasRocketStation: 0
-  planetStorage: 000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1338046316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3656,11 +3665,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917044246}
   m_CullTransparentMesh: 1
---- !u!1 &1931544404 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1223545636940487557, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-  m_PrefabInstance: {fileID: 3705596012699733088}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1931544405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}

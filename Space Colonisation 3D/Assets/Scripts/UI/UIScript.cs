@@ -57,7 +57,7 @@ public class UIScript : MonoBehaviour
     void UpdateDisplay()
     {
         //PlanetNameDisplay.text = SelectedColony.planetName;
-        OreProductionDisplay.text = $"Ore Production: {SelectedColony.oreProduction}/m";
+        OreProductionDisplay.text = $"Ore Production: {SelectedColony.planetProduction.GetResourceAmount("ore")}/m";
         OreDisplay.text = $"Ore: {SelectedColony.planetStorage.GetResourceAmount("ore")}";
         EnergyProductionDisplay.text = $"Energy Production: {SelectedColony.planetStorage.GetResourceAmount("energy")}";
         ManPowerDisplay.text = $"Man Power:  {SelectedColony.planetStorage.GetResourceAmount("manpower")}";
