@@ -43,8 +43,6 @@ public class PurchaseGrid : MonoBehaviour
         string buildingType = "";
         //Checks which button matches the BuildingName of the "buttonName" which is inputed manually in the Event Trigger component on the buttons, and sets the variables "buttonCost" and "buttonProduction" to their new values which are then used when displaying the popout window.
         ConstructionMechanics CM = UIScript.GetComponent<ConstructionMechanics>();
-        CM.GetBuildingByName(buttonName);
-
         switch (buttonName)
         {
             case "BuyMine":
@@ -67,12 +65,10 @@ public class PurchaseGrid : MonoBehaviour
         }
 
         GameObject Building = CM.GetBuildingByName(buildingType);
-        
-        int[] costs = Building.GetComponent<BuildingScript>().GetConstructionCosts();
-        int[] production = Building.GetComponent<BuildingScript>().GetResourceProduction();
+        BuildingScript BS = Building.GetComponent<BuildingScript>();
 
-        buttonCost = new Vector3(costs[0], costs[1], costs[2]); //COST (ORE, ENERGY, MANPOWER)
-        buttonProduction = new Vector3(production[0], production[1], production[2]); //PRODUCTION (ORE, ENERGY, MANPOWER)
+        buttonCost = new Vector3(BS.Costs.GetResourceAmount("ore"), BS.ConstantResourceConsumption.GetResourceAmount("energy"), BS.ConstantResourceConsumption.GetResourceAmount("manpower")); //COST (ORE, ENERGY, MANPOWER)
+        buttonProduction = new Vector3(BS.Production.GetResourceAmount("ore"), BS.Production.GetResourceAmount("energy"), BS.Production.GetResourceAmount("manpower")); //PRODUCTION (ORE, ENERGY, MANPOWER)
         //Destroy(Building);
 
     }

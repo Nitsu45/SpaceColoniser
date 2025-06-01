@@ -7,7 +7,7 @@ public class RocketStation : BuildingScript
 {
     public RocketStation()
     {
-        BuildingName = "rocket station";
+        BuildingName = "rocketstation";
         oreCost = 1000;
         energyConsumption = 500;
         manpowerAssigned = 500;
@@ -30,6 +30,6 @@ public class RocketStation : BuildingScript
     // Update is called once per frame
     void Update()
     {
-        
+        BuildingName = "rocketstation";
     }
 }

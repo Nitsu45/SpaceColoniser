@@ -151,9 +151,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1370247336}
   - {fileID: 1057782071}
   - {fileID: 368263366}
-  - {fileID: 1931544405}
   - {fileID: 2014745160}
   - {fileID: 165967396}
   - {fileID: 258488114}
@@ -668,11 +668,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6798526885743221790, guid: 4680b2a8b7f1d90439ec3e10d93c7c91, type: 3}
   m_PrefabInstance: {fileID: 160629624}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &165967395 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3226379503610364770, guid: 0209acd55a2726f4a94c611334c41463, type: 3}
-  m_PrefabInstance: {fileID: 6771324833908670943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &165967396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4063662875143480151, guid: 0209acd55a2726f4a94c611334c41463, type: 3}
@@ -833,11 +828,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 225}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &258488113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 747247987909380482, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
-  m_PrefabInstance: {fileID: 551712923}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &258488114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5428957597343188979, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
@@ -1111,11 +1101,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328672572}
   m_CullTransparentMesh: 1
---- !u!1 &368263365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3744311355055209082, guid: dc321a9cb74344442bfa882ff5d587e2, type: 3}
-  m_PrefabInstance: {fileID: 3778967032664059104}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &368263366 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2397159872984708340, guid: dc321a9cb74344442bfa882ff5d587e2, type: 3}
@@ -1393,7 +1378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 515919208}
   - component: {fileID: 515919210}
-  - component: {fileID: 515919209}
+  - component: {fileID: 515919211}
   m_Layer: 5
   m_Name: UI-Script
   m_TagString: Untagged
@@ -1421,24 +1406,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &515919209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515919207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ad420a3b5a27543820aaa47aa2e7db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  template: {fileID: 165967395}
-  mine: {fileID: 258488113}
-  powerplant: {fileID: 1057782070}
-  house: {fileID: 368263365}
-  spacestation: {fileID: 1223545636940487557, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-  rocketstation: {fileID: 2014745159}
 --- !u!114 &515919210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,6 +1428,26 @@ MonoBehaviour:
   PlanetSwitchButton: {fileID: 738777707}
   nextPlanet: {fileID: 1172849090}
   SelectedPlanet: {fileID: 428225589}
+--- !u!114 &515919211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515919207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ad420a3b5a27543820aaa47aa2e7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  template: {fileID: 3226379503610364770, guid: 0209acd55a2726f4a94c611334c41463, type: 3}
+  mine: {fileID: 747247987909380482, guid: a64936f4fbec49d44a2494adc9039e25, type: 3}
+  powerplant: {fileID: 8821921592333715519, guid: 726c7318c2d0077458ba4ffb1395d9c8, type: 3}
+  house: {fileID: 3744311355055209082, guid: dc321a9cb74344442bfa882ff5d587e2, type: 3}
+  spacestation: {fileID: 1223545636940487557, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+  rocketstation: {fileID: 7521413624874197536, guid: 0e1720a6078051941ae88de4d531c520, type: 3}
+  Buildings: {fileID: 56409352}
+  ListOfBuildings: []
 --- !u!1001 &551712923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1576,6 +1563,7 @@ MonoBehaviour:
   buildingHealth: 100
   oreCost: 200
   energyCost: 50
+  manpowerCost: 0
   coalCost: 0
   uraniumCost: 0
   waterCost: 0
@@ -1596,7 +1584,7 @@ MonoBehaviour:
   specialtools: 0
   rareEarths: 0
   oreConsumption: 0
-  EnergyConsumption: 0
+  energyConsumption: 0
   manpowerAssigned: 0
   coalConsumption: 0
   uraniumConsumption: 0
@@ -2155,11 +2143,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1057782070 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8821921592333715519, guid: 726c7318c2d0077458ba4ffb1395d9c8, type: 3}
-  m_PrefabInstance: {fileID: 7966143570461814053}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1057782071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090686912987263547, guid: 726c7318c2d0077458ba4ffb1395d9c8, type: 3}
@@ -2427,6 +2410,79 @@ MonoBehaviour:
   tickTimer: 10
   planetName: TestPlanet2
   hasRocketStation: 0
+--- !u!1001 &1244198340
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 56409353}
+    m_Modifications:
+    - target: {fileID: 1223545636940487557, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_Name
+      value: Space Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.010000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.010000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.010000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
 --- !u!1 &1338046316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,6 +2527,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c051e8ede4e714993762faced10448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1370247336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
+  m_PrefabInstance: {fileID: 1244198340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1500358897
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,6 +3458,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510299b2e0a16454d89b2783829e8fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuildingName: 
+  maxManpower: 0
+  dependendTechnology: 
+  buildingHealth: 100
+  oreCost: 0
+  energyCost: 0
+  manpowerCost: 0
+  coalCost: 0
+  uraniumCost: 0
+  waterCost: 0
+  researchPointsCosts: 0
+  foodCost: 0
+  maschinepartsCost: 0
+  specialtoolsCost: 0
+  rareEarthsCost: 0
+  oreProduction: 0
+  energyProduction: 0
+  manpower: 0
+  coal: 0
+  uranium: 0
+  water: 0
+  researchPoints: 0
+  food: 0
+  maschineparts: 0
+  specialtools: 0
+  rareEarths: 0
+  oreConsumption: 0
+  energyConsumption: 0
+  manpowerAssigned: 0
+  coalConsumption: 0
+  uraniumConsumption: 0
+  waterConsumption: 0
+  researchPointsConsumption: 0
+  foodConsumption: 0
+  maschinepartsConsumption: 0
+  specialtoolsConsumption: 0
+  rareEarthsConsumption: 0
 --- !u!1 &1904100252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,16 +3763,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917044246}
   m_CullTransparentMesh: 1
---- !u!4 &1931544405 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-  m_PrefabInstance: {fileID: 3705596012699733088}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2014745159 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7521413624874197536, guid: 0e1720a6078051941ae88de4d531c520, type: 3}
-  m_PrefabInstance: {fileID: 1610989648496941703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2014745160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4776054157879000344, guid: 0e1720a6078051941ae88de4d531c520, type: 3}
@@ -4068,67 +4156,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e1720a6078051941ae88de4d531c520, type: 3}
---- !u!1001 &3705596012699733088
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 56409353}
-    m_Modifications:
-    - target: {fileID: 1223545636940487557, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_Name
-      value: Space Station
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7813038018476060067, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ca3c1e068b69c974a9c8ccc0dfe0e978, type: 3}
 --- !u!1001 &3778967032664059104
 PrefabInstance:
   m_ObjectHideFlags: 0

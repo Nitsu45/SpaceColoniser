@@ -15,6 +15,7 @@ public class BuildingScript : MonoBehaviour
     public int buildingHealth = 100; // Health of the building. Treat it as if it were percent % 
     public int oreCost = 0;
     public int energyCost = 0; //energy is a constant cost, meaning it doesn't get substracted one time during construction, but instead occupys this amount of energy as long as it exists
+    public int manpowerCost = 0;
     public int coalCost = 0;
     public int uraniumCost = 0;
     public int waterCost = 0;
@@ -83,7 +84,7 @@ public class BuildingScript : MonoBehaviour
     //When making changes to the next two Methods (GetConstructionCosts and GetResourceProduction) please make sure you use the same order as in the resource class for the resources
     public int[] GetConstructionCosts()
     {
-        return new int[] { oreCost, rareEarthsCost, coalCost, uraniumCost, waterCost, energyCost, researchPointsCosts, manpower, foodCost, maschinepartsCost, specialtoolsCost, };
+        return new int[] { oreCost, rareEarthsCost, coalCost, uraniumCost, waterCost, energyCost, researchPointsCosts, manpowerCost, foodCost, maschinepartsCost, specialtoolsCost, };
     }
     public int[] GetResourceProduction()
     {

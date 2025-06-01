@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4776054157879000344}
-  - component: {fileID: 2378024619620652943}
   - component: {fileID: 9150162386912502331}
   - component: {fileID: 56080156779550476}
+  - component: {fileID: 7140958768031249854}
   m_Layer: 0
   m_Name: RocketStation
   m_TagString: Buildings
@@ -34,25 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2378024619620652943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7521413624874197536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e655acaa001718e478efc312222c3834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: rocket station
-  oreCost: 1000
-  energyCost: 500
-  manPowerCost: 500
-  oreProduction: 0
-  energyProduction: 0
-  manpower: 0
 --- !u!33 &9150162386912502331
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103,3 +84,52 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7140958768031249854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521413624874197536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e655acaa001718e478efc312222c3834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildingName: rocketstation
+  maxManpower: 0
+  dependendTechnology: 
+  buildingHealth: 100
+  oreCost: 1000
+  energyCost: 0
+  manpowerCost: 0
+  coalCost: 0
+  uraniumCost: 0
+  waterCost: 0
+  researchPointsCosts: 0
+  foodCost: 0
+  maschinepartsCost: 0
+  specialtoolsCost: 0
+  rareEarthsCost: 0
+  oreProduction: 0
+  energyProduction: 0
+  manpower: 0
+  coal: 0
+  uranium: 0
+  water: 0
+  researchPoints: 0
+  food: 0
+  maschineparts: 0
+  specialtools: 0
+  rareEarths: 0
+  oreConsumption: 0
+  energyConsumption: 500
+  manpowerAssigned: 500
+  coalConsumption: 0
+  uraniumConsumption: 0
+  waterConsumption: 0
+  researchPointsConsumption: 0
+  foodConsumption: 0
+  maschinepartsConsumption: 0
+  specialtoolsConsumption: 0
+  rareEarthsConsumption: 0

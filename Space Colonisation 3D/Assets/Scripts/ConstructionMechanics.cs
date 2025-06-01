@@ -13,9 +13,10 @@ public class ConstructionMechanics : MonoBehaviour
     public GameObject house;
     public GameObject spacestation;
     public GameObject rocketstation;
+    public GameObject Buildings;
 
     // public GameObject[] Tech1Buildings = new GameObject[9];
-    GameObject[] ListOfBuildings;
+    public GameObject[] ListOfBuildings;
     
 
 
@@ -34,10 +35,6 @@ public class ConstructionMechanics : MonoBehaviour
 
 
 
-
-
-
-
     //Constructing a building
     /*
      The function looks complicated but it essentially just checks what Gameobject is referenced by the BuildingName that is passed as a string.
@@ -49,14 +46,19 @@ public class ConstructionMechanics : MonoBehaviour
     {
         GameObject ConstructedBuilding = GetBuildingByName(buildingName);
         BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
-        if(CheckingConstructionCosts(ConstructedBuildingProperties.Costs,SelectedColony.planetStorage))
+        if (CheckingConstructionCosts(ConstructedBuildingProperties.Costs, SelectedColony.planetStorage))
         {
             StartCoroutine(buildingPlacement(ConstructedBuilding, SelectedColony));
-            
+
             if (buildingName == "rocketstation") SelectedColony.hasRocketStation = true;
-           
+
             return true;
-        }else return false;
+        }
+        else
+        {
+            Debug.Log("Not enough Resources for construction");
+            return false;
+        } 
 
 
     }
@@ -87,21 +89,13 @@ public class ConstructionMechanics : MonoBehaviour
     //This way all of the references are in one place and you can get them by using a simple string.
     public GameObject GetBuildingByName(string buildingName)
     {
-        switch (buildingName)
+        for (int i = 0; i < ListOfBuildings.Length; i++)
         {
-            case "mine":
-                return mine;
-            case "powerplant":
-                return powerplant;
-            case "house":
-                return house;
-            case "rocketstation":
-                return rocketstation;
-            case "spacestation":
-                return spacestation;
-            default:
-                return template;
+            BuildingScript Bs = ListOfBuildings[i].GetComponent<BuildingScript>();
+            if (Bs.BuildingName == buildingName) return ListOfBuildings[i];
         }
+        Debug.Log("Building not found");
+        return template;
     }
 
 
@@ -109,7 +103,12 @@ public class ConstructionMechanics : MonoBehaviour
     //No function yet
     void CreateListOfBuildings()
     {
-        ListOfBuildings = GameObject.FindGameObjectsWithTag("Buildings");
+       // Buildings.GetComponentInChildren(,true);
+
+
+
+
+        ListOfBuildings = new GameObject[] {template, mine, powerplant, house, spacestation, rocketstation };
     }
 
     void AbortConstruction()
