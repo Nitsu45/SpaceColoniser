@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8609637128073234839}
   - component: {fileID: -7149412429209440842}
   - component: {fileID: -7172608651494689775}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Space Station
   m_TagString: Buildings
   m_Icon: {fileID: 0}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: spacestation
-  OreCost: 1000
-  EnergyCost: 0
+  oreCost: 1000
+  energyCost: 0
   manPowerCost: 0
   oreProduction: 0
   energyProduction: 100

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7009353121476401888}
   - component: {fileID: -7251209604369795323}
   - component: {fileID: 4145488805296055569}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: House
   m_TagString: Buildings
   m_Icon: {fileID: 0}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: house
-  OreCost: 200
-  EnergyCost: 50
+  oreCost: 200
+  energyCost: 50
   manPowerCost: 0
   oreProduction: 0
   energyProduction: 0

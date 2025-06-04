@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 143415938828456639}
   - component: {fileID: -6336476445030880217}
   - component: {fileID: 7996940313983938663}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PowerPlant
   m_TagString: Buildings
   m_Icon: {fileID: 0}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: powerplant
-  OreCost: 200
-  EnergyCost: 0
+  oreCost: 200
+  energyCost: 0
   manPowerCost: 10
   oreProduction: 0
   energyProduction: 100

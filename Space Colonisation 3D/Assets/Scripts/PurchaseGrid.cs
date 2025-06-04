@@ -16,6 +16,7 @@ public class PurchaseGrid : MonoBehaviour
     [SerializeField] GameObject BuyButton;
     [SerializeField] GameObject PurchasePopOut;
     [SerializeField] UIScript uiScript;
+    [SerializeField] GameObject buildingsMenu;
     RectTransform rectTransform;
 
     GameObject instantiatedPopoutWindow;
@@ -25,11 +26,12 @@ public class PurchaseGrid : MonoBehaviour
     Action onClickFunction;
 
     int generatedButtonAmount = 0;
+    bool isMenuOpen = false;
 
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        
+
         generateButtons();
     }
 
@@ -76,7 +78,7 @@ public class PurchaseGrid : MonoBehaviour
 
         //Adds the event entries.
         EventTrigger eventTrigger = buttonInstance.GetComponent<EventTrigger>();
-        
+
         EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry
         {
             eventID = EventTriggerType.PointerEnter
@@ -118,27 +120,43 @@ public class PurchaseGrid : MonoBehaviour
         {
             case "BuyMine":
                 buttonCost = new Vector3(200, 50, 10); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buttonProduction = new Vector3(50, 0, 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
                 onClickFunction = uiScript.BuyMineButton;
                 break;
-            
+
             case "BuyHouse":
                 buttonCost = new Vector3(200, 50, 0); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buttonProduction = new Vector3(50, 0, 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
                 onClickFunction = uiScript.BuyHouseButton;
                 break;
 
             case "BuyRocketstation":
                 buttonCost = new Vector3(1000, 500, 500); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buttonProduction = new Vector3(50, 0, 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
                 onClickFunction = uiScript.BuyRocketStationButton;
                 break;
 
             case "BuyPowerplant":
                 buttonCost = new Vector3(200, 0, 10); //COST (ORE, ENERGY, MANPOWER)
-                buttonProduction = new Vector3(50, 0 , 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
+                buttonProduction = new Vector3(50, 0, 0); //PRODUCTION (ORE, ENERGY, MANPOWER)
                 onClickFunction = uiScript.BuyPPButton;
                 break;
+        }
+    }
+
+    public void OpenCloseMenu()
+    {
+        RectTransform rectTransform = buildingsMenu.GetComponent<RectTransform>();
+
+        if (!isMenuOpen)
+        {
+            rectTransform.anchoredPosition = new Vector3(0, 62, 0);
+            isMenuOpen = true;
+        }
+        else
+        {
+            rectTransform.anchoredPosition = new Vector3(0, -62, 0);
+            isMenuOpen = false;
         }
     }
 }

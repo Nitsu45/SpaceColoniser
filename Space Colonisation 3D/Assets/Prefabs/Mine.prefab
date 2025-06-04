@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2589763861354724221}
   - component: {fileID: 5365695838371499122}
   - component: {fileID: 5808213561548572927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mine
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: mine
-  OreCost: 200
-  EnergyCost: 50
+  oreCost: 200
+  energyCost: 50
   manPowerCost: 10
   oreProduction: 50
   energyProduction: 0

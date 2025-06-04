@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5450164398071369517}
   - component: {fileID: 3843043212397169587}
   - component: {fileID: -9137228017790931075}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TemplateBuilding
   m_TagString: Buildings
   m_Icon: {fileID: 0}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  OreCost: 0
-  EnergyCost: 0
+  oreCost: 0
+  energyCost: 0
   manPowerCost: 0
   oreProduction: 0
   energyProduction: 0

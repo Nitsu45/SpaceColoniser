@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ConstructionMechanics : MonoBehaviour
 {
+    [SerializeField] BuildingMenu buildingMenu;
 
     //Prefabs
     public GameObject template;
@@ -17,9 +18,9 @@ public class ConstructionMechanics : MonoBehaviour
 
 
     GameObject[] ListOfBuildings;
-    
 
 
+    bool canSelectBuildings = true;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class ConstructionMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        selectBuilding();
     }
 
 
@@ -46,11 +47,11 @@ public class ConstructionMechanics : MonoBehaviour
      When the Colony has enough resources, these are saved in the planetInventory array, then the function returns true and the player get's to place the building.
      */
 
-    public bool ConstructingBuilding(string buildingName, Colonymechanics SelectedColony )
+    public bool ConstructingBuilding(string buildingName, Colonymechanics SelectedColony)
     {
         GameObject ConstructedBuilding = GettingBuildingByName(buildingName);
         BuildingScript ConstructedBuildingProperties = ConstructedBuilding.GetComponent<BuildingScript>();
-        if(CheckingConstructionCosts(ConstructedBuildingProperties.GetConstructionCosts(),SelectedColony.planetStorage))
+        if (CheckingConstructionCosts(ConstructedBuildingProperties.GetConstructionCosts(), SelectedColony.planetStorage))
         {
             //Need to add a function that allows for the cancelation of a building during placement
             StartCoroutine(buildingPlacement(ConstructedBuilding));
@@ -58,9 +59,10 @@ public class ConstructionMechanics : MonoBehaviour
             SelectedColony.AddingBuildingToColony(ConstructedBuilding);
             SelectedColony.planetStorage = SubstractingConstructionCosts(buildingName, SelectedColony.planetStorage);
             if (buildingName == "rocketstation") SelectedColony.hasRocketStation = true;
-           
+
             return true;
-        }else return false;
+        }
+        else return false;
 
 
     }
@@ -123,6 +125,7 @@ public class ConstructionMechanics : MonoBehaviour
     IEnumerator buildingPlacement(GameObject building)
     {
         GameObject placedBuilding = Instantiate(building);
+        canSelectBuildings = false;
         while (true)
         {
             //Loops until player has chosen the position of the building.
@@ -138,6 +141,7 @@ public class ConstructionMechanics : MonoBehaviour
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
                     placedBuilding.AddComponent<BoxCollider>();
+                    canSelectBuildings = true;
                     yield break;
                 }
             }
@@ -145,11 +149,18 @@ public class ConstructionMechanics : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-
+    void selectBuilding()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Ray selectingRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(selectingRay, out RaycastHit hitObject, Mathf.Infinity, 1 << 6))
+            {
+                if (canSelectBuildings)
+                {
+                    buildingMenu.openMenu(hitObject.transform.gameObject);
+                }
+            }
+        }
+    }
 }

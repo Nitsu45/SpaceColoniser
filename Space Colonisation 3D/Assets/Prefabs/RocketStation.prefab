@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2378024619620652943}
   - component: {fileID: 9150162386912502331}
   - component: {fileID: 56080156779550476}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RocketStation
   m_TagString: Buildings
   m_Icon: {fileID: 0}
