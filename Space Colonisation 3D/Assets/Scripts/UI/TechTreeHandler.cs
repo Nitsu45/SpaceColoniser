@@ -1,18 +1,22 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class TechTree : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TechTreeHandler
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Methode zum erstellen des Techtree 
+
+        //Methode zum Abfragen ob ein Node bereits erforscht ist.
+
+        //Methoden für abfragen der Bedingungen eines Nodes
+
+        //Methoden für Abfragen ob Bedingungen für eine Technologie gegeben sind
+
+
     }
 }

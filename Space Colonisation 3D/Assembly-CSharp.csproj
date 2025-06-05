@@ -63,9 +63,11 @@
     <Compile Include="Assets\Scripts\BuildingS\GreenhouseScript.cs" />
     <Compile Include="Assets\Scripts\BuildingS\ResearchLaboratoryScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\Scripts\UI\TechNode.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\UI\UIScript.cs" />
+    <Compile Include="Assets\Scripts\UI\TechTreeInitializier.cs" />
     <Compile Include="Assets\Scripts\BuildingS\PowerPlantScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
