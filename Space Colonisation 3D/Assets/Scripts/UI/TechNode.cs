@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TechNode 
 {
+    public int costs = 0;
     public string Name;
     public List<TechNode> Prerequisites;
     public List<TechNode> Unlocks;
